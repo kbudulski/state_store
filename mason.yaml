@@ -1,0 +1,4 @@
+bricks:
+  app_ui: ^0.0.4
+  feature_brick: ^0.6.2
+  service_package: ^0.0.5

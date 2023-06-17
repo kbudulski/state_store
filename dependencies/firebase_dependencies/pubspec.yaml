@@ -1,0 +1,12 @@
+name: firebase_dependencies
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies:
+  firebase_auth: ^4.6.0
+  firebase_core: ^2.12.0
+  firebase_database: ^10.2.0
+  firebase_messaging: ^14.6.0

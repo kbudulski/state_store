@@ -1,0 +1,16 @@
+name: firebase_service
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies:
+
+  # Shared
+  firebase_dependencies:
+    path: ../../dependencies/firebase_dependencies
+  firebase_ui_dependencies:
+    path: ../../dependencies/firebase_ui_dependencies
+  shared_dependencies:
+    path: ../../dependencies/shared_dependencies

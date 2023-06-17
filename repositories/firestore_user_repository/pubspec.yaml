@@ -1,0 +1,24 @@
+name: firestore_user_repository
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  json_annotation: ^4.8.1
+
+  # Shared
+  firebase_dependencies:
+    path: ../../dependencies/firebase_dependencies
+  firebase_firestore:
+    path: ../../dependencies/firebase_firestore
+  shared_dependencies:
+    path: ../../dependencies/shared_dependencies
+
+dev_dependencies:
+  build_runner:
+  json_serializable: ^6.7.0

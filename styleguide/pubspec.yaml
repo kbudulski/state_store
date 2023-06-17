@@ -1,0 +1,19 @@
+name: styleguide
+description: Package with tokens, theme, components
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  gap: ^3.0.0
+
+  # Shared
+  firebase_ui_dependencies:
+    path: ../dependencies/firebase_ui_dependencies
+  shared_dependencies:
+    path: ../dependencies/shared_dependencies
+  shared_assets:
+    path: ../dependencies/shared_assets
