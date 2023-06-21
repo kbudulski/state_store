@@ -30,6 +30,8 @@ dependencies:
     path: ../../repositories/firestore_user_repository
   notification_repository:
     path: ../../repositories/notification_repository
+  realtime_chat_repository:
+    path: ../../repositories/realtime_chat_repository
 
   # Shared
   firebase_dependencies:

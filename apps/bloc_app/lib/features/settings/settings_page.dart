@@ -105,7 +105,7 @@ class SettingsPage extends StatelessWidget {
           title: 'Help',
           subtitle: 'Get help and send feedback',
           iconBackgroundColor: Colors.amber,
-          onTap: () {},
+          onTap: () => context.vRouter.to(Paths.help),
         ),
         SimpleCard(
           icon: Icons.info,

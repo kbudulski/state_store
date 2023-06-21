@@ -5,6 +5,7 @@ import 'package:firestore_user_repository/firestore_user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:notification_repository/notification_repository.dart';
+import 'package:realtime_chat_repository/realtime_chat_repository.dart';
 import 'package:shared_dependencies/shared_dependencies.dart';
 
 Future<void> main() async {
@@ -20,6 +21,8 @@ Future<void> main() async {
 
   final firestoreUserRepository = FirestoreUserRepository();
 
+  final realtimeChatRepository = RealtimeChatRepository();
+
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: await getTemporaryDirectory(),
   );
@@ -29,6 +32,7 @@ Future<void> main() async {
       authRepository: authRepository,
       notificationRepository: notificationRepository,
       firestoreUserRepository: firestoreUserRepository,
+      realtimeChatRepository: realtimeChatRepository,
     ),
   );
 }

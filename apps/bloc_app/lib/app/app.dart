@@ -10,6 +10,7 @@ import 'package:firestore_user_repository/firestore_user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notification_repository/notification_repository.dart';
+import 'package:realtime_chat_repository/realtime_chat_repository.dart';
 import 'package:shared_dependencies/shared_dependencies.dart';
 import 'package:styleguide/style.dart';
 
@@ -21,12 +22,14 @@ class MyApp extends StatelessWidget {
     required this.authRepository,
     required this.notificationRepository,
     required this.firestoreUserRepository,
+    required this.realtimeChatRepository,
     super.key,
   });
 
   final AuthenticationRepository authRepository;
   final NotificationRepository notificationRepository;
   final FirestoreUserRepository firestoreUserRepository;
+  final RealtimeChatRepository realtimeChatRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (_) => authRepository),
         RepositoryProvider(create: (_) => notificationRepository),
         RepositoryProvider(create: (_) => firestoreUserRepository),
+        RepositoryProvider(create: (_) => realtimeChatRepository),
       ],
       child: MultiBlocProvider(
         providers: [

@@ -43,10 +43,12 @@ class ThemePage extends StatelessWidget {
                   ),
                 ),
                 SimpleCard(
-                  icon: Icons.dark_mode,
+                  icon: state.themeMode == ThemeMode.dark
+                      ? Icons.dark_mode
+                      : Icons.light_mode,
                   title: 'Dark Mode',
                   subtitle: 'Enable dark mode',
-                  iconBackgroundColor: Colors.black,
+                  iconBackgroundColor: Colors.black26,
                   onTap: context.read<ThemeCubit>().toggleDarkMode,
                   trailing: Switch(
                     activeColor: Colors.white,
