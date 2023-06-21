@@ -1,6 +1,6 @@
 import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/vrouter.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage({super.key});

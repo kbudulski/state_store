@@ -1,4 +1,4 @@
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/intl.dart';
 
 String getFormattedDateWithTime(DateTime? dateTime) {
   if (dateTime == null) return '-';

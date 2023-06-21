@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_dependencies/firebase_dependencies.dart';
+import 'package:firebase_dependencies/firebase_messaging.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:notification_repository/notification_repository.dart';
 

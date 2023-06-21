@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:firebase_dependencies/firebase_dependencies.dart';
-import 'package:firebase_firestore/firebase_firestore.dart';
+import 'package:firebase_dependencies/cloud_firestore.dart';
+import 'package:firebase_dependencies/firebase_auth.dart';
 import 'package:firestore_user_repository/firestore_user_repository.dart';
 
 class FirestoreUserRepository {

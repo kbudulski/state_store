@@ -5,7 +5,7 @@ import 'package:bloc_app/features/settings/profile/profile_page.dart';
 import 'package:bloc_app/features/settings/settings_page.dart';
 import 'package:bloc_app/features/settings/theme/theme_page.dart';
 import 'package:bloc_app/utils/navigation/paths.dart';
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/vrouter.dart';
 
 class SettingsRoute extends VRouteElementBuilder {
   @override

@@ -24,8 +24,6 @@ dependencies:
   # Shared
   firebase_dependencies:
     path: ../../dependencies/firebase_dependencies
-  firebase_ui_dependencies:
-    path: ../../dependencies/firebase_ui_dependencies
   shared_dependencies:
     path: ../../dependencies/shared_dependencies
   styleguide:

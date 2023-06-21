@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/package_info_plus.dart';
 
 part 'about_state.dart';
 

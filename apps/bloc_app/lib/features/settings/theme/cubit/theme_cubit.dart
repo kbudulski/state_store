@@ -1,7 +1,7 @@
 import 'package:bloc_app/features/settings/theme/cubit/theme_state.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/flex_color_scheme.dart';
 
 class ThemeCubit extends HydratedCubit<ThemeState> {
   ThemeCubit() : super(const ThemeState());

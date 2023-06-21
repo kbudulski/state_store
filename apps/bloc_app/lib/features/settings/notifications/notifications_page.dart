@@ -2,7 +2,8 @@ import 'package:bloc_app/features/settings/notifications/cubit/notifications_cub
 import 'package:bloc_app/features/settings/notifications/widgets/daily_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/app_settings.dart';
+import 'package:shared_dependencies/flex_color_scheme.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
 

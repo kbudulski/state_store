@@ -1,5 +1,6 @@
-import 'package:firebase_dependencies/firebase_dependencies.dart';
-import 'package:firebase_ui_dependencies/firebase_ui_dependencies.dart';
+import 'package:firebase_dependencies/firebase_core.dart';
+import 'package:firebase_dependencies/firebase_ui_auth.dart';
+import 'package:firebase_dependencies/firebase_ui_oauth.dart';
 
 const String kFirebaseWebClientId = String.fromEnvironment('CLIENT_ID');
 

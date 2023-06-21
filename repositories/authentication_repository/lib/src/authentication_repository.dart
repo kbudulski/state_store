@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:firebase_dependencies/firebase_dependencies.dart';
+import 'package:firebase_dependencies/firebase_auth.dart';
 
 class AuthenticationRepository {
   final _firebaseAuth = FirebaseAuth.instance;

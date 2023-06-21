@@ -3,7 +3,7 @@ import 'package:bloc_app/features/settings/theme/cubit/theme_state.dart';
 import 'package:bloc_app/features/settings/theme/widgets/theme_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/flex_color_scheme.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
 

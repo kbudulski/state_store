@@ -1,4 +1,4 @@
-import 'package:firebase_ui_dependencies/firebase_ui_dependencies.dart';
+import 'package:firebase_dependencies/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_assets/shared_assets.dart';
 

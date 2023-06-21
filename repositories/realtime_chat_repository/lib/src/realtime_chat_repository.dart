@@ -1,6 +1,6 @@
-import 'package:firebase_dependencies/firebase_dependencies.dart';
+import 'package:firebase_dependencies/firebase_database.dart';
 import 'package:realtime_chat_repository/realtime_chat_repository.dart';
-import 'package:shared_dependencies/shared_tech_dependencies.dart';
+import 'package:shared_dependencies/dartz.dart';
 
 class RealtimeChatRepository {
   final DatabaseReference _messagesRef =

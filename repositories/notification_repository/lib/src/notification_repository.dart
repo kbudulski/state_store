@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:firebase_dependencies/firebase_dependencies.dart';
+import 'package:firebase_dependencies/firebase_messaging.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/flutter_local_notifications.dart';
 
 class NotificationRepository {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;

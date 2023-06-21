@@ -11,8 +11,8 @@ dependencies:
   gap: ^3.0.0
 
   # Shared
-  firebase_ui_dependencies:
-    path: ../dependencies/firebase_ui_dependencies
+  firebase_dependencies:
+    path: ../dependencies/firebase_dependencies
   shared_dependencies:
     path: ../dependencies/shared_dependencies
   shared_assets:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/flex_color_scheme.dart';
+import 'package:shared_dependencies/google_fonts.dart';
 
 const _kUseMaterial3 = true;
 final _kTextTheme = GoogleFonts.rubikTextTheme();

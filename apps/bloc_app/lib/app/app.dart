@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:realtime_chat_repository/realtime_chat_repository.dart';
-import 'package:shared_dependencies/shared_dependencies.dart';
+import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/style.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =

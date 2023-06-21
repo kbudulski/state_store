@@ -14,8 +14,6 @@ dependencies:
   # Shared
   firebase_dependencies:
     path: ../../dependencies/firebase_dependencies
-  firebase_firestore:
-    path: ../../dependencies/firebase_firestore
   shared_dependencies:
     path: ../../dependencies/shared_dependencies
 
