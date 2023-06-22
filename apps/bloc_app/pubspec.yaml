@@ -34,6 +34,8 @@ dependencies:
     path: ../../repositories/realtime_chat_repository
 
   # Shared
+  core_dependencies:
+    path: ../../dependencies/core_dependencies
   firebase_dependencies:
     path: ../../dependencies/firebase_dependencies
   shared_dependencies:

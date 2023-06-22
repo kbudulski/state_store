@@ -1,4 +1,4 @@
-name: authentication_repository
+name: api_repository
 version: 1.0.0+1
 publish_to: none
 
@@ -6,12 +6,15 @@ environment:
   sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
-  equatable: ^2.0.5
   flutter:
     sdk: flutter
+  retrofit: ^4.0.1
 
   # Shared
   core_dependencies:
     path: ../../dependencies/core_dependencies
-  firebase_dependencies:
-    path: ../../dependencies/firebase_dependencies
+
+dev_dependencies:
+  retrofit_generator: ^7.0.1+1
+  build_runner: ^2.4.4
+  json_serializable: ^6.7.0

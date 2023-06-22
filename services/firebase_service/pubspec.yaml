@@ -8,7 +8,7 @@ environment:
 dependencies:
 
   # Shared
+  core_dependencies:
+    path: ../../dependencies/core_dependencies
   firebase_dependencies:
     path: ../../dependencies/firebase_dependencies
-  shared_dependencies:
-    path: ../../dependencies/shared_dependencies

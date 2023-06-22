@@ -11,6 +11,8 @@ dependencies:
   gap: ^3.0.0
 
   # Shared
+  core_dependencies:
+    path: ../dependencies/core_dependencies
   firebase_dependencies:
     path: ../dependencies/firebase_dependencies
   shared_dependencies:
