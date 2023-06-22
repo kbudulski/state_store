@@ -1,4 +1,5 @@
 import 'package:bloc_app/features/settings/help/cubit/help_cubit.dart';
+import 'package:bloc_app/features/settings/help/cubit/ui_message.dart';
 import 'package:bloc_app/features/settings/help/widgets/chat_bubble.dart';
 import 'package:bloc_app/utils/date_formatters.dart';
 import 'package:bloc_app/utils/extensions/context_extensions.dart';
@@ -54,35 +55,11 @@ class MessageList extends StatelessWidget {
             order: GroupedListOrder.DESC,
             reverse: true,
             floatingHeader: true,
-            groupHeaderBuilder: (message) => Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: Dimens.size12),
-                child: Text(
-                  getFormattedDate(message.date),
-                  style: context.textTheme.labelSmall?.copyWith(
-                    color: context.color.onBackground.withOpacity(0.7),
-                  ),
-                ),
-              ),
+            groupHeaderBuilder: (message) => _buildGroupHeaderBuilder(
+              context,
+              message: message,
             ),
-            itemBuilder: (_, message) {
-              if (message.sentByCurrentUser) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Spacer(),
-                    Flexible(flex: 5, child: ChatBubble(message)),
-                  ],
-                );
-              } else {
-                return Row(
-                  children: [
-                    Flexible(flex: 5, child: ChatBubble(message)),
-                    const Spacer(),
-                  ],
-                );
-              }
-            },
+            itemBuilder: _buildChatBubble,
           );
         }
         return Center(
@@ -93,5 +70,41 @@ class MessageList extends StatelessWidget {
         );
       },
     );
+  }
+
+  Widget _buildGroupHeaderBuilder(
+    BuildContext context, {
+    required UIMessage message,
+  }) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: Dimens.size12),
+        child: Text(
+          getFormattedDate(message.date),
+          style: context.textTheme.labelSmall?.copyWith(
+            color: context.color.onBackground.withOpacity(0.7),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChatBubble(_, UIMessage message) {
+    if (message.sentByCurrentUser) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          const Spacer(),
+          Flexible(flex: 5, child: ChatBubble(message)),
+        ],
+      );
+    } else {
+      return Row(
+        children: [
+          Flexible(flex: 5, child: ChatBubble(message)),
+          const Spacer(),
+        ],
+      );
+    }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/src/tokens/dimensions.dart';
 
 class SimpleCard extends StatelessWidget {
@@ -22,7 +23,7 @@ class SimpleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(Dimens.size24),
+      borderRadius: radius(Dimens.size24),
       child: Material(
         color: Theme.of(context).colorScheme.primary,
         child: InkWell(
@@ -56,7 +57,7 @@ class SimpleCard extends StatelessWidget {
       padding: const EdgeInsets.all(Dimens.size08),
       decoration: BoxDecoration(
         color: iconBackgroundColor,
-        borderRadius: BorderRadius.circular(Dimens.size12),
+        borderRadius: radius(Dimens.size12),
       ),
       child: Icon(
         icon,
@@ -83,9 +84,9 @@ class SimpleCard extends StatelessWidget {
       subtitle!,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.6),
-          ),
+      style: context.textTheme.labelLarge?.copyWith(
+        color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.6),
+      ),
     );
   }
 }

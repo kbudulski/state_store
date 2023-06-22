@@ -79,9 +79,11 @@ class ProfilePage extends StatelessWidget {
                     title: 'Logout',
                     subtitle: 'Logout from the app',
                     iconBackgroundColor: Colors.redAccent,
-                    onTap: () async => context.read<AuthCubit>().signOut().then(
-                          (_) => context.vRouter.to(Paths.login),
-                        ),
+                    onTap: () async {
+                      await context.read<AuthCubit>().signOut().then(
+                            (_) => context.vRouter.to(Paths.login),
+                          );
+                    },
                     trailing: const SizedBox.shrink(),
                   ),
                 ],

@@ -1,6 +1,7 @@
 import 'package:firebase_dependencies/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_assets/shared_assets.dart';
+import 'package:shared_dependencies/nb_utils.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({
@@ -25,11 +26,11 @@ class LoginPage extends StatelessWidget {
           ),
           Text(
             'State Store',
-            style: Theme.of(context).textTheme.displayLarge,
+            style: context.textTheme.displayLarge,
           ),
           Text(
             name,
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: context.textTheme.headlineSmall,
           ),
         ],
       ),

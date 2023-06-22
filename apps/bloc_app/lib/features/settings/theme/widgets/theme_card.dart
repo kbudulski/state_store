@@ -2,6 +2,7 @@ import 'package:bloc_app/features/settings/theme/cubit/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/flex_color_scheme.dart';
+import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
 class ThemeCard extends StatelessWidget {
@@ -19,7 +20,7 @@ class ThemeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(Dimens.size24),
+      borderRadius: radius(Dimens.size24),
       child: Material(
         color: _getPrimaryColor(scheme.value, themeMode),
         child: InkWell(

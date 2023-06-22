@@ -2,6 +2,7 @@ import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/permission_handler.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
@@ -28,7 +29,7 @@ class SettingsPage extends StatelessWidget {
               centerTitle: true,
               title: Text(
                 'Settings',
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: context.textTheme.headlineMedium,
               ),
             ),
           ),
@@ -125,9 +126,11 @@ class SettingsPage extends StatelessWidget {
       title: 'Logout',
       subtitle: 'Logout from the app',
       iconBackgroundColor: Colors.redAccent,
-      onTap: () async => context.read<AuthCubit>().signOut().then(
-            (_) => context.vRouter.to(Paths.login),
-          ),
+      onTap: () async {
+        await context.read<AuthCubit>().signOut().then(
+              (_) => context.vRouter.to(Paths.login),
+            );
+      },
       trailing: const SizedBox.shrink(),
     );
   }

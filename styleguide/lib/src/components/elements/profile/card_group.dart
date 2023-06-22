@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
 class CardGroup extends StatelessWidget {
@@ -11,12 +12,12 @@ class CardGroup extends StatelessWidget {
     return Card(
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Dimens.size24),
+        borderRadius: radius(Dimens.size24),
       ),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(Dimens.size24),
+          color: context.primaryColor,
+          borderRadius: radius(Dimens.size24),
         ),
         child: ListView.separated(
           itemCount: cards.length,

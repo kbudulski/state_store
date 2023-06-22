@@ -1,5 +1,6 @@
 import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
 import 'package:bloc_app/features/settings/notifications/widgets/daily_card.dart';
+import 'package:bloc_app/utils/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/app_settings.dart';
@@ -51,9 +52,7 @@ class NotificationsPage extends StatelessWidget {
     NotificationsState state,
   ) {
     if (state.isRefreshingPermissions) {
-      return CircularProgressIndicator(
-        color: Theme.of(context).colorScheme.secondary,
-      );
+      return CircularProgressIndicator(color: context.color.secondary);
     } else {
       return IconButton(
         icon: const Icon(Icons.refresh),

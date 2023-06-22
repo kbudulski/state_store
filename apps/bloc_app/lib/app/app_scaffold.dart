@@ -1,7 +1,9 @@
 import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
+import 'package:bloc_app/utils/extensions/context_extensions.dart';
 import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/style.dart';
 
@@ -10,21 +12,30 @@ class AppScaffold extends StatelessWidget {
 
   final Widget child;
 
+  bool _isDailyTextInNotification(
+    NotificationsState previous,
+    NotificationsState current,
+  ) =>
+      previous.dailyText != current.dailyText && current.dailyText != null;
+
+  bool _isPathInNotification(
+    NotificationsState previous,
+    NotificationsState current,
+  ) =>
+      previous.path != current.path && current.path != null;
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
         BlocListener<NotificationsCubit, NotificationsState>(
-          listenWhen: (previous, current) =>
-              previous.path != current.path && current.path != null,
+          listenWhen: _isPathInNotification,
           listener: (BuildContext context, state) {
             VRouter.of(context).to(state.path!);
           },
         ),
         BlocListener<NotificationsCubit, NotificationsState>(
-          listenWhen: (previous, current) =>
-              previous.dailyText != current.dailyText &&
-              current.dailyText != null,
+          listenWhen: _isDailyTextInNotification,
           listener: (BuildContext context, state) {
             showDialog<void>(
               context: context,
@@ -58,7 +69,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Dimens.size20),
         child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(Dimens.size24)),
+          borderRadius: radius(Dimens.size24),
           child: NavigationBar(
             height: Dimens.size64,
             indicatorColor: Colors.transparent,
@@ -69,7 +80,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                 icon: const Icon(Icons.home),
                 selectedIcon: Icon(
                   Icons.home,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: context.color.secondary,
                 ),
               ),
               NavigationDestination(
@@ -77,7 +88,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                 icon: const Icon(Icons.person),
                 selectedIcon: Icon(
                   Icons.person,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: context.color.secondary,
                 ),
               ),
             ],

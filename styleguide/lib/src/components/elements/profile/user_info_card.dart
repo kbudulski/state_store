@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
 class UserInfoCard extends StatelessWidget {
@@ -19,7 +20,7 @@ class UserInfoCard extends StatelessWidget {
       height: mediaQueryHeight / 6,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
-        borderRadius: BorderRadius.circular(Dimens.size32),
+        borderRadius: radius(Dimens.size32),
       ),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: Dimens.size32),
