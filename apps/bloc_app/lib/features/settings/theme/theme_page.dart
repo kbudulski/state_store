@@ -42,7 +42,7 @@ class ThemePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SimpleCard(
+                AppListTile(
                   icon: state.themeMode == ThemeMode.dark
                       ? Icons.dark_mode
                       : Icons.light_mode,

@@ -27,9 +27,9 @@ class ProfilePage extends StatelessWidget {
                 userPhotoURL: NetworkImage(user.photoURL ?? ''),
               ),
               AppSpaces.gap20,
-              CardGroup(
+              AppTileGroup(
                 cards: [
-                  SimpleCard(
+                  AppListTile(
                     icon: Icons.perm_identity,
                     title: user.name ?? '',
                     subtitle: 'User name',
@@ -38,15 +38,15 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               AppSpaces.gap20,
-              CardGroup(
+              AppTileGroup(
                 cards: [
-                  SimpleCard(
+                  AppListTile(
                     icon: Icons.mail_outline,
                     title: user.email ?? '',
                     subtitle: 'Email',
                     trailing: const SizedBox.shrink(),
                   ),
-                  SimpleCard(
+                  AppListTile(
                     icon: Icons.verified,
                     title: user.emailVerified ?? false ? 'Yes' : 'No',
                     subtitle: 'Email verified',
@@ -55,15 +55,15 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               AppSpaces.gap20,
-              CardGroup(
+              AppTileGroup(
                 cards: [
-                  SimpleCard(
+                  AppListTile(
                     icon: Icons.build_circle_outlined,
                     title: getFormattedDateWithTime(user.creationTime),
                     subtitle: 'Account created',
                     trailing: const SizedBox.shrink(),
                   ),
-                  SimpleCard(
+                  AppListTile(
                     icon: Icons.query_builder,
                     title: getFormattedDateWithTime(user.lastSignInTime),
                     subtitle: 'Last signed in',
@@ -72,9 +72,9 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               AppSpaces.gap20,
-              CardGroup(
+              AppTileGroup(
                 cards: [
-                  SimpleCard(
+                  AppListTile(
                     icon: Icons.logout,
                     title: 'Logout',
                     subtitle: 'Logout from the app',

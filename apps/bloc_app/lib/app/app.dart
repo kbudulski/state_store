@@ -1,3 +1,4 @@
+import 'package:api_repository/api_repository.dart';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:bloc_app/features/global/user_data/user_data_cubit.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
     required this.notificationRepository,
     required this.firestoreUserRepository,
     required this.realtimeChatRepository,
+    required this.apiRepository,
     super.key,
   });
 
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
   final NotificationRepository notificationRepository;
   final FirestoreUserRepository firestoreUserRepository;
   final RealtimeChatRepository realtimeChatRepository;
+  final ApiRepository apiRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (_) => notificationRepository),
         RepositoryProvider(create: (_) => firestoreUserRepository),
         RepositoryProvider(create: (_) => realtimeChatRepository),
+        RepositoryProvider(create: (_) => apiRepository),
       ],
       child: MultiBlocProvider(
         providers: [

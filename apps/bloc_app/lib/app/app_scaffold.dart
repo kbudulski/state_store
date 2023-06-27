@@ -1,5 +1,4 @@
 import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
-import 'package:bloc_app/utils/extensions/context_extensions.dart';
 import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,10 +59,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(Dimens.size08),
-        child: child,
-      ),
+      body: child,
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterFloat,
       floatingActionButton: Padding(

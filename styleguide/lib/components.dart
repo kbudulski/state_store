@@ -1,6 +1,11 @@
+export 'src/components/atoms/error_message.dart';
 export 'src/components/atoms/loading_indicator.dart';
-export 'src/components/elements/profile/card_group.dart';
-export 'src/components/elements/profile/simple_card.dart';
-export 'src/components/elements/profile/user_info_card.dart';
+export 'src/components/atoms/mini_icon_chip.dart';
+export 'src/components/elements/app_card.dart';
+export 'src/components/elements/app_card_colored.dart';
+export 'src/components/elements/app_chip.dart';
+export 'src/components/elements/app_list_tile.dart';
+export 'src/components/elements/app_tile_group.dart';
+export 'src/components/elements/user_info_card.dart';
 export 'src/components/pages/login_page.dart';
 export 'src/components/pages/splash_page.dart';

@@ -11,5 +11,8 @@ abstract class Dimens {
   static const double size56 = 56;
   static const double size60 = 60;
   static const double size64 = 64;
+  static const double size72 = 72;
+  static const double size80 = 80;
+  static const double size88 = 88;
   static const double size100 = 100;
 }

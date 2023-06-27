@@ -56,17 +56,17 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  CardGroup _buildPersonalGroup(BuildContext context) {
-    return CardGroup(
+  AppTileGroup _buildPersonalGroup(BuildContext context) {
+    return AppTileGroup(
       cards: [
-        SimpleCard(
+        AppListTile(
           icon: Icons.person,
           title: 'Profile',
           subtitle: 'Change your name and photo',
           iconBackgroundColor: Colors.lightGreen,
           onTap: () => context.vRouter.to(Paths.profile),
         ),
-        SimpleCard(
+        AppListTile(
           icon: Icons.palette,
           title: 'Theme',
           subtitle: 'Change how the app looks',
@@ -77,10 +77,10 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  CardGroup _buildConfigGroup(BuildContext context) {
-    return CardGroup(
+  AppTileGroup _buildConfigGroup(BuildContext context) {
+    return AppTileGroup(
       cards: [
-        const SimpleCard(
+        const AppListTile(
           icon: Icons.lock,
           trailing: Icon(Icons.arrow_outward),
           title: 'Allow access',
@@ -88,7 +88,7 @@ class SettingsPage extends StatelessWidget {
           iconBackgroundColor: Colors.grey,
           onTap: openAppSettings,
         ),
-        SimpleCard(
+        AppListTile(
           icon: Icons.notifications_active,
           title: 'Notifications',
           subtitle: 'Toggle notification settings',
@@ -99,17 +99,17 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  CardGroup _buildInfoGroup(BuildContext context) {
-    return CardGroup(
+  AppTileGroup _buildInfoGroup(BuildContext context) {
+    return AppTileGroup(
       cards: [
-        SimpleCard(
+        AppListTile(
           icon: Icons.chat_bubble,
           title: 'Help',
           subtitle: 'Get help and send feedback',
           iconBackgroundColor: Colors.amber,
           onTap: () => context.vRouter.to(Paths.help),
         ),
-        SimpleCard(
+        AppListTile(
           icon: Icons.info,
           title: 'About',
           subtitle: 'Get information about the app',
@@ -120,8 +120,8 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  SimpleCard _buildLogoutButton(BuildContext context) {
-    return SimpleCard(
+  AppListTile _buildLogoutButton(BuildContext context) {
+    return AppListTile(
       icon: Icons.logout,
       title: 'Logout',
       subtitle: 'Logout from the app',

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
-class CardGroup extends StatelessWidget {
-  const CardGroup({required this.cards, super.key});
+class AppTileGroup extends StatelessWidget {
+  const AppTileGroup({required this.cards, super.key});
 
   final List<Widget> cards;
 

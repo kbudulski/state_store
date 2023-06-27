@@ -8,3 +8,4 @@ environment:
 flutter:
   assets:
     - assets/logo/
+    - assets/images/

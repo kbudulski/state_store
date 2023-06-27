@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -14,6 +14,7 @@ dependencies:
   bloc: ^8.1.1
   equatable: ^2.0.5
   flutter_bloc: ^8.1.2
+  bloc_concurrency: ^0.2.2
   freezed: ^2.3.4
   freezed_annotation: ^2.2.0
   hydrated_bloc: ^9.1.1
@@ -24,6 +25,8 @@ dependencies:
     path: ../../services/firebase_service
 
   # Repositories
+  api_repository:
+    path: ../../repositories/api_repository
   authentication_repository:
     path: ../../repositories/authentication_repository
   firestore_user_repository:

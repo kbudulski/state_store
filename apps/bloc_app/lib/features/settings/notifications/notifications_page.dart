@@ -1,6 +1,5 @@
 import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
 import 'package:bloc_app/features/settings/notifications/widgets/daily_card.dart';
-import 'package:bloc_app/utils/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/app_settings.dart';
@@ -21,9 +20,9 @@ class NotificationsPage extends StatelessWidget {
             padding: const EdgeInsets.all(Dimens.size16).copyWith(
               top: Dimens.size20,
             ),
-            child: CardGroup(
+            child: AppTileGroup(
               cards: [
-                SimpleCard(
+                AppListTile(
                   icon: Icons.lock_open,
                   title: state.status.name.capitalize,
                   subtitle: 'Permissions status',
@@ -31,7 +30,7 @@ class NotificationsPage extends StatelessWidget {
                   trailing: _buildPermissionRefreshButton(context, state),
                 ),
                 const DailyCard(),
-                const SimpleCard(
+                const AppListTile(
                   icon: Icons.settings,
                   trailing: Icon(Icons.arrow_outward),
                   title: 'Primary settings',

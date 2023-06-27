@@ -2,11 +2,11 @@ import 'package:bloc_app/features/settings/help/cubit/help_cubit.dart';
 import 'package:bloc_app/features/settings/help/cubit/ui_message.dart';
 import 'package:bloc_app/features/settings/help/widgets/chat_bubble.dart';
 import 'package:bloc_app/utils/date_formatters.dart';
-import 'package:bloc_app/utils/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/grouped_list.dart';
 import 'package:shared_dependencies/nb_utils.dart';
+import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
 
 class MessageList extends StatelessWidget {
@@ -25,17 +25,10 @@ class MessageList extends StatelessWidget {
     return BlocBuilder<HelpCubit, HelpState>(
       builder: (_, state) {
         if (state.isLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const AppSpinner();
         }
         if (state.error != null) {
-          return Center(
-            child: Text(
-              'Something went wrong',
-              style: context.textTheme.headlineMedium?.copyWith(
-                color: Colors.red,
-              ),
-            ),
-          );
+          return const ErrorMessage('Something went wrong');
         }
         if (state.messages.isNotEmpty) {
           WidgetsBinding.instance.addPostFrameCallback(_scrollToBottom);

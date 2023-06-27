@@ -10,7 +10,7 @@ class DailyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final subToDaily = context.watch<UserDataCubit>().subscribedToDaily;
-    return SimpleCard(
+    return AppListTile(
       icon: Icons.access_time,
       title: 'Daily',
       subtitle: 'Subscribe to daily messages',

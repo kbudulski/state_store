@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_dependencies/flex_color_scheme.dart';
 import 'package:shared_dependencies/google_fonts.dart';
 
+extension BuildContextExt on BuildContext {
+  ColorScheme get color => Theme.of(this).colorScheme;
+}
+
 const _kUseMaterial3 = true;
 final _kTextTheme = GoogleFonts.rubikTextTheme();
 

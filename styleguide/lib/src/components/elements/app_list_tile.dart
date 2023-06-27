@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/src/tokens/dimensions.dart';
 
-class SimpleCard extends StatelessWidget {
-  const SimpleCard({
+class AppListTile extends StatelessWidget {
+  const AppListTile({
     required this.icon,
     required this.title,
     this.iconBackgroundColor = Colors.blueAccent,

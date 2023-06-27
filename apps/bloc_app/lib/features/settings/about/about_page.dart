@@ -34,25 +34,25 @@ class AboutView extends StatelessWidget {
         child: BlocBuilder<AboutCubit, AboutState>(
           builder: (_, state) {
             if (state is AboutStateLoading) {
-              return const LoadingIndicator();
+              return const AppSpinner();
             }
             if (state is AboutStateLoaded) {
-              return CardGroup(
+              return AppTileGroup(
                 cards: [
-                  SimpleCard(
+                  AppListTile(
                     icon: Icons.numbers,
                     trailing: const SizedBox.shrink(),
                     title: 'v${state.appVersion}',
                     iconBackgroundColor: Colors.cyan,
                   ),
-                  SimpleCard(
+                  AppListTile(
                     icon: Icons.info,
                     trailing: const Icon(Icons.arrow_outward),
                     title: 'Terms & conditions',
                     iconBackgroundColor: Colors.cyan,
                     onTap: () => launchUrl(_termsUri),
                   ),
-                  SimpleCard(
+                  AppListTile(
                     icon: Icons.info,
                     trailing: const Icon(Icons.arrow_outward),
                     title: 'Privacy policy',

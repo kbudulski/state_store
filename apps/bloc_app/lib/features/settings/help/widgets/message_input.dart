@@ -1,5 +1,4 @@
 import 'package:bloc_app/features/settings/help/cubit/help_cubit.dart';
-import 'package:bloc_app/utils/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/nb_utils.dart';

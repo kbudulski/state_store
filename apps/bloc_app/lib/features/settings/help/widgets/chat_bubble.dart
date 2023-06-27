@@ -1,6 +1,5 @@
 import 'package:bloc_app/features/settings/help/cubit/ui_message.dart';
 import 'package:bloc_app/utils/date_formatters.dart';
-import 'package:bloc_app/utils/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';

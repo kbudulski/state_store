@@ -1,7 +1,9 @@
 import 'package:bloc_app/app/app.dart';
 import 'package:bloc_app/app/app_scaffold.dart';
+import 'package:bloc_app/features/api/api_page.dart';
 import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:bloc_app/features/home/home_page.dart';
+import 'package:bloc_app/features/settings/help/help_page.dart';
 import 'package:bloc_app/features/user/user_page.dart';
 import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:bloc_app/utils/navigation/routes/settings_route.dart';
@@ -36,31 +38,43 @@ List<VRouteElement> buildAppRoutes(BuildContext context) {
           widgetBuilder: AppScaffold.new,
           nestedRoutes: [
             VWidget(
+              key: const ValueKey(Paths.home),
               path: Paths.home,
               widget: const HomePage(),
-            ),
-            VWidget(
-              path: Paths.user,
-              widget: const UserPage(),
               aliases: const [
                 Paths.settings,
+                Paths.api,
                 Paths.profile,
                 Paths.theme,
                 Paths.notifications,
                 Paths.help,
                 Paths.about,
+                Paths.helpFromHome,
               ],
+            ),
+            VWidget(
+              key: const ValueKey(Paths.user),
+              path: Paths.user,
+              widget: const UserPage(),
             ),
           ],
           stackedRoutes: [
             VPopHandler(
-              onPop: (vRedirector) async => vRedirector.to(Paths.user),
-              onSystemPop: (vRedirector) async => vRedirector.to(Paths.user),
+              onPop: (vRedirector) async => vRedirector.to(Paths.home),
+              onSystemPop: (vRedirector) async => vRedirector.to(Paths.home),
               stackedRoutes: [
                 SettingsRoute(),
+                VWidget(
+                  path: Paths.helpFromHome,
+                  widget: const HelpPage(),
+                ),
+                VWidget(
+                  key: const ValueKey(Paths.api),
+                  path: Paths.api,
+                  widget: const ApiPage(),
+                ),
               ],
             ),
-            // SettingsRoute(),
           ],
         ),
       ],
