@@ -1,12 +1,14 @@
 import 'package:bloc_app/app/app.dart';
 import 'package:bloc_app/app/app_scaffold.dart';
 import 'package:bloc_app/features/api/api_page.dart';
+import 'package:bloc_app/features/api_details/api_details_page.dart';
 import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:bloc_app/features/home/home_page.dart';
 import 'package:bloc_app/features/settings/help/help_page.dart';
 import 'package:bloc_app/features/user/user_page.dart';
 import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:bloc_app/utils/navigation/routes/settings_route.dart';
+import 'package:bloc_app/utils/navigation/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/vrouter.dart';
@@ -44,6 +46,7 @@ List<VRouteElement> buildAppRoutes(BuildContext context) {
               aliases: const [
                 Paths.settings,
                 Paths.api,
+                Paths.apiDetails,
                 Paths.profile,
                 Paths.theme,
                 Paths.notifications,
@@ -69,9 +72,15 @@ List<VRouteElement> buildAppRoutes(BuildContext context) {
                   widget: const HelpPage(),
                 ),
                 VWidget(
-                  key: const ValueKey(Paths.api),
                   path: Paths.api,
                   widget: const ApiPage(),
+                  stackedRoutes: [
+                    VWidget(
+                      path: Paths.apiDetails,
+                      widget: const ApiDetailsPage(),
+                      buildTransition: slideTransition,
+                    ),
+                  ],
                 ),
               ],
             ),

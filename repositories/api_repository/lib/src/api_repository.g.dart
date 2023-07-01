@@ -45,7 +45,7 @@ class _ApiRepository implements ApiRepository {
     )
             .compose(
               _dio.options,
-              'species-list',
+              'species-list?compress=true',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -55,6 +55,33 @@ class _ApiRepository implements ApiRepository {
               baseUrl,
             ))));
     final value = Plants.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<PlantDetails> getPlantDetails({required String id}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<PlantDetails>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'species/details/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = PlantDetails.fromJson(_result.data!);
     return value;
   }
 

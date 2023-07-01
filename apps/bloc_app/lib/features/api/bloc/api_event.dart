@@ -11,6 +11,9 @@ final class PlantsSearched extends ApiEvent {
   PlantsSearched(this.query);
 
   final String query;
+
+  @override
+  List<Object> get props => [query];
 }
 
 final class PlantsFiltered extends ApiEvent {

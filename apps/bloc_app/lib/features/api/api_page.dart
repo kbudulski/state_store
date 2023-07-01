@@ -4,9 +4,11 @@ import 'package:bloc_app/features/api/widgets/filter_bottom_sheet.dart';
 import 'package:bloc_app/features/api/widgets/filter_button.dart';
 import 'package:bloc_app/features/api/widgets/plant_search_field.dart';
 import 'package:bloc_app/features/api/widgets/plant_tile.dart';
+import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/infinite_scroll_pagination.dart';
+import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
 
@@ -123,11 +125,9 @@ class _ApiViewState extends State<ApiView> {
           error: state.nextPageError,
         );
         return PagedListView.separated(
-          padding: const EdgeInsets.only(
-            left: Dimens.size16,
-            top: Dimens.size20,
-            right: Dimens.size16,
-            bottom: Dimens.size64 + Dimens.size32,
+          padding: const EdgeInsets.symmetric(
+            horizontal: Dimens.size16,
+            vertical: Dimens.size20,
           ),
           physics: const BouncingScrollPhysics(),
           separatorBuilder: (_, __) => AppSpaces.gap20,
@@ -139,6 +139,9 @@ class _ApiViewState extends State<ApiView> {
               scientificName: plant.scientificName?.single ?? 'Unknown',
               watering: plant.watering,
               sunlightList: plant.sunlight,
+              onTap: () => context.vRouter.to(
+                Paths.apiDetails.replaceFirst(':id', plant.id.toString()),
+              ),
             ),
           ),
         );

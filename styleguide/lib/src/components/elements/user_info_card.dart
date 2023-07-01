@@ -19,7 +19,7 @@ class UserInfoCard extends StatelessWidget {
     return Container(
       height: mediaQueryHeight / 6,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
+        color: context.color.primary,
         borderRadius: radius(Dimens.size32),
       ),
       child: Container(
@@ -43,7 +43,7 @@ class UserInfoCard extends StatelessWidget {
         Align(
           child: CircleAvatar(
             radius: mediaQueryHeight / 15,
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: context.color.background,
           ),
         ),
         CircleAvatar(
@@ -62,7 +62,7 @@ class UserInfoCard extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 26,
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: context.color.onPrimary,
         overflow: TextOverflow.ellipsis,
       ),
     );

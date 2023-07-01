@@ -12,6 +12,7 @@ class PlantTile extends StatelessWidget {
     required this.scientificName,
     required this.watering,
     required this.sunlightList,
+    required this.onTap,
     super.key,
   });
 
@@ -20,43 +21,48 @@ class PlantTile extends StatelessWidget {
   final String scientificName;
   final Watering? watering;
   final List<Sunlight>? sunlightList;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        _buildImage(),
-        AppSpaces.gap16,
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                commonName,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: context.textTheme.titleLarge,
-              ),
-              Text(
-                scientificName,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: context.textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey,
+    return InkWell(
+      borderRadius: radius(Dimens.size16),
+      onTap: onTap,
+      child: Row(
+        children: [
+          _buildImage(),
+          AppSpaces.gap16,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  commonName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.textTheme.titleLarge,
                 ),
-              ),
-              AppSpaces.gap08,
-              Row(
-                children: [
-                  ..._buildSunlightIcons(),
-                  _buildWateringIcon(),
-                ],
-              ),
-            ],
+                Text(
+                  scientificName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey,
+                  ),
+                ),
+                AppSpaces.gap08,
+                Row(
+                  children: [
+                    ..._buildSunlightIcons(),
+                    _buildWateringIcon(),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-        const Icon(Icons.chevron_right, color: Colors.grey)
-      ],
+          const Icon(Icons.chevron_right, color: Colors.grey)
+        ],
+      ),
     );
   }
 

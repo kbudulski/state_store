@@ -5,6 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'plant.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
+@CustomSunlightConverter()
 class Plant {
   Plant({
     this.id,
@@ -26,7 +27,6 @@ class Plant {
   @JsonKey(unknownEnumValue: Cycle.unknown)
   Cycle? cycle;
   Watering? watering;
-  @JsonKey(unknownEnumValue: Sunlight.unknown)
   List<Sunlight>? sunlight;
   Photo? defaultImage;
 }
@@ -52,15 +52,10 @@ enum Watering {
   final IconData icon;
 }
 
-@JsonEnum()
 enum Sunlight {
-  @JsonValue('full shade')
   fullShade(Icons.nightlight, Colors.indigoAccent),
-  @JsonValue('part shade')
   partShade(Icons.cloud, Colors.blueGrey),
-  @JsonValue('part sun/part shade')
   partShadePartSun(Icons.brightness_6, Colors.orangeAccent),
-  @JsonValue('full sun')
   fullSun(Icons.sunny, Colors.amber),
   unknown(Icons.help, Colors.grey);
 
@@ -68,4 +63,37 @@ enum Sunlight {
 
   final IconData icon;
   final Color color;
+}
+
+class CustomSunlightConverter
+    implements JsonConverter<List<Sunlight>, List<dynamic>> {
+  const CustomSunlightConverter();
+
+  @override
+  List<Sunlight> fromJson(List<dynamic> json) {
+    final list = json.map((e) => e as String).toList();
+    if (json.isEmpty) return [Sunlight.unknown];
+
+    return list
+        .map((element) {
+          if (element.toLowerCase().contains(RegExp('full.*shade'))) {
+            return Sunlight.fullShade;
+          }
+          if (element.toLowerCase().contains(RegExp('full.*sun'))) {
+            return Sunlight.fullSun;
+          }
+          if (element.toLowerCase().contains(RegExp('part.*sun.*shade'))) {
+            return Sunlight.partShadePartSun;
+          }
+          if (element.toLowerCase().contains(RegExp('part|filter.*shade'))) {
+            return Sunlight.partShade;
+          }
+          return Sunlight.unknown;
+        })
+        .toSet()
+        .toList();
+  }
+
+  @override
+  List<String> toJson(List<Sunlight> json) => [];
 }

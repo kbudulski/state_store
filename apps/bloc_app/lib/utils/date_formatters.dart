@@ -12,5 +12,5 @@ String getFormattedDate(DateTime? dateTime) {
 
 String getFormattedTime(DateTime? dateTime) {
   if (dateTime == null) return '-';
-  return DateFormat('kk:mm').format(dateTime);
+  return DateFormat('HH:mm').format(dateTime);
 }

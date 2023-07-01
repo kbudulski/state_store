@@ -5,11 +5,14 @@ abstract class Paths {
 
   // Tabs
   static const home = '/home';
-  static const api = '/plants';
   static const user = '/user';
 
   // From home
   static const settings = '$home/settings';
+
+  static const api = '$home/plants';
+  static const apiDetails = '$api/:id';
+
   static const helpFromHome = '$home/help';
 
   // Settings

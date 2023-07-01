@@ -18,10 +18,8 @@ Plant _$PlantFromJson(Map<String, dynamic> json) => Plant(
       cycle: $enumDecodeNullable(_$CycleEnumMap, json['cycle'],
           unknownValue: Cycle.unknown),
       watering: $enumDecodeNullable(_$WateringEnumMap, json['watering']),
-      sunlight: (json['sunlight'] as List<dynamic>?)
-          ?.map((e) =>
-              $enumDecode(_$SunlightEnumMap, e, unknownValue: Sunlight.unknown))
-          .toList(),
+      sunlight: _$JsonConverterFromJson<List<dynamic>, List<Sunlight>>(
+          json['sunlight'], const CustomSunlightConverter().fromJson),
       defaultImage: json['default_image'] == null
           ? null
           : Photo.fromJson(json['default_image'] as Map<String, dynamic>),
@@ -34,7 +32,8 @@ Map<String, dynamic> _$PlantToJson(Plant instance) => <String, dynamic>{
       'other_name': instance.otherName,
       'cycle': _$CycleEnumMap[instance.cycle],
       'watering': _$WateringEnumMap[instance.watering],
-      'sunlight': instance.sunlight?.map((e) => _$SunlightEnumMap[e]!).toList(),
+      'sunlight': _$JsonConverterToJson<List<dynamic>, List<Sunlight>>(
+          instance.sunlight, const CustomSunlightConverter().toJson),
       'default_image': instance.defaultImage,
     };
 
@@ -53,10 +52,14 @@ const _$WateringEnumMap = {
   Watering.none: 'None',
 };
 
-const _$SunlightEnumMap = {
-  Sunlight.fullShade: 'full shade',
-  Sunlight.partShade: 'part shade',
-  Sunlight.partShadePartSun: 'part sun/part shade',
-  Sunlight.fullSun: 'full sun',
-  Sunlight.unknown: 'unknown',
-};
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

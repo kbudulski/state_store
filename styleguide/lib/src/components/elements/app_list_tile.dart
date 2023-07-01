@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
-import 'package:styleguide/src/tokens/dimensions.dart';
+import 'package:styleguide/style.dart';
 
 class AppListTile extends StatelessWidget {
   const AppListTile({
@@ -25,7 +25,7 @@ class AppListTile extends StatelessWidget {
     return ClipRRect(
       borderRadius: radius(Dimens.size24),
       child: Material(
-        color: Theme.of(context).colorScheme.primary,
+        color: context.color.primary,
         child: InkWell(
           onTap: onTap,
           child: ListTile(
@@ -48,7 +48,7 @@ class AppListTile extends StatelessWidget {
     if (trailing != null) return trailing!;
     return Icon(
       Icons.navigate_next,
-      color: Theme.of(context).colorScheme.onPrimary,
+      color: context.color.onPrimary,
     );
   }
 
@@ -62,7 +62,7 @@ class AppListTile extends StatelessWidget {
       child: Icon(
         icon,
         size: Dimens.size16,
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: context.color.onPrimary,
       ),
     );
   }
@@ -72,7 +72,7 @@ class AppListTile extends StatelessWidget {
       title,
       style: TextStyle(
         fontWeight: FontWeight.w600,
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: context.color.onPrimary,
       ),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
@@ -85,7 +85,7 @@ class AppListTile extends StatelessWidget {
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: context.textTheme.labelLarge?.copyWith(
-        color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.6),
+        color: context.color.onPrimary.withOpacity(0.6),
       ),
     );
   }
