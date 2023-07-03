@@ -15,6 +15,9 @@ abstract class Paths {
 
   static const helpFromHome = '$home/help';
 
+  static const feed = '$home/feed';
+  static const addImage = '$feed/addImage';
+
   // Settings
   static const profile = '$settings/profile';
   static const theme = '$settings/theme';

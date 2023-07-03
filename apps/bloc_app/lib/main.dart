@@ -2,6 +2,7 @@ import 'package:api_repository/api_repository.dart';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc_app/app/app.dart';
 import 'package:firebase_service/firebase_service.dart';
+import 'package:firestore_feed_repository/firestore_feed_repository.dart';
 import 'package:firestore_user_repository/firestore_user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -22,6 +23,7 @@ Future<void> main() async {
   await notificationRepository.setupLocalNotifications();
 
   final firestoreUserRepository = FirestoreUserRepository();
+  final firestoreFeedRepository = FirestoreFeedRepository();
   final realtimeChatRepository = RealtimeChatRepository();
 
   final apiRepository = ApiRepository(
@@ -43,6 +45,7 @@ Future<void> main() async {
       authRepository: authRepository,
       notificationRepository: notificationRepository,
       firestoreUserRepository: firestoreUserRepository,
+      firestoreFeedRepository: firestoreFeedRepository,
       realtimeChatRepository: realtimeChatRepository,
       apiRepository: apiRepository,
     ),

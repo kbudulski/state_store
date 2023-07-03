@@ -29,6 +29,8 @@ dependencies:
     path: ../../repositories/api_repository
   authentication_repository:
     path: ../../repositories/authentication_repository
+  firestore_feed_repository:
+    path: ../../repositories/firestore_feed_repository
   firestore_user_repository:
     path: ../../repositories/firestore_user_repository
   notification_repository:

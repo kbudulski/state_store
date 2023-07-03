@@ -68,12 +68,12 @@ class HomeView extends StatelessWidget {
             AppSpaces.gap16,
             AppCard(
               title: 'FIRESTORE',
-              coloredLabel: 'Album',
+              coloredLabel: 'Feed',
               icon: Icons.image,
               description: 'files, upload, storage',
               image: SharedImages.plants1,
               overlayColor: Colors.pink,
-              onTap: () {},
+              onTap: () => context.vRouter.to(Paths.feed),
             ),
             AppSpaces.gap32,
             Padding(

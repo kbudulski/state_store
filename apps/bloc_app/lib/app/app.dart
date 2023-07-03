@@ -7,6 +7,7 @@ import 'package:bloc_app/features/settings/theme/cubit/theme_cubit.dart';
 import 'package:bloc_app/features/settings/theme/cubit/theme_state.dart';
 import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:bloc_app/utils/navigation/routes/app_routes.dart';
+import 'package:firestore_feed_repository/firestore_feed_repository.dart';
 import 'package:firestore_user_repository/firestore_user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
     required this.authRepository,
     required this.notificationRepository,
     required this.firestoreUserRepository,
+    required this.firestoreFeedRepository,
     required this.realtimeChatRepository,
     required this.apiRepository,
     super.key,
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
   final AuthenticationRepository authRepository;
   final NotificationRepository notificationRepository;
   final FirestoreUserRepository firestoreUserRepository;
+  final FirestoreFeedRepository firestoreFeedRepository;
   final RealtimeChatRepository realtimeChatRepository;
   final ApiRepository apiRepository;
 
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (_) => authRepository),
         RepositoryProvider(create: (_) => notificationRepository),
         RepositoryProvider(create: (_) => firestoreUserRepository),
+        RepositoryProvider(create: (_) => firestoreFeedRepository),
         RepositoryProvider(create: (_) => realtimeChatRepository),
         RepositoryProvider(create: (_) => apiRepository),
       ],

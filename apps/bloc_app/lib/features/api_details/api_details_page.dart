@@ -49,19 +49,19 @@ class ApiDetailsView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildImage(details.defaultImage?.regularUrl),
-                    const SizedBox(height: Dimens.size16),
+                    AppSpaces.gap16,
                     Text(
                       details.commonName ?? 'Unknown',
                       style: context.textTheme.displaySmall,
                     ),
-                    const SizedBox(height: Dimens.size08),
+                    AppSpaces.gap08,
                     Text(
                       details.scientificName?.first ?? 'Unknown',
                       style: context.textTheme.headlineLarge?.copyWith(
                         color: const Color.fromRGBO(156, 214, 125, 1),
                       ),
                     ),
-                    const SizedBox(height: Dimens.size16),
+                    AppSpaces.gap16,
                     Text(
                       details.description ?? '-',
                       textAlign: TextAlign.justify,

@@ -2,7 +2,12 @@ import 'package:shared_dependencies/intl.dart';
 
 String getFormattedDateWithTime(DateTime? dateTime) {
   if (dateTime == null) return '-';
-  return DateFormat('dd.MM.yyyy, kk:mm').format(dateTime);
+  return DateFormat('dd.MM.yyyy, HH:mm').format(dateTime);
+}
+
+String getFormattedDateWithTimeMonthText(DateTime? dateTime) {
+  if (dateTime == null) return '-';
+  return DateFormat('dd MMM yyyy, HH:mm').format(dateTime);
 }
 
 String getFormattedDate(DateTime? dateTime) {

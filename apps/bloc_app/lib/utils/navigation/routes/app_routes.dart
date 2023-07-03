@@ -2,6 +2,7 @@ import 'package:bloc_app/app/app.dart';
 import 'package:bloc_app/app/app_scaffold.dart';
 import 'package:bloc_app/features/api/api_page.dart';
 import 'package:bloc_app/features/api_details/api_details_page.dart';
+import 'package:bloc_app/features/feed/feed_page.dart';
 import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:bloc_app/features/home/home_page.dart';
 import 'package:bloc_app/features/settings/help/help_page.dart';
@@ -47,6 +48,7 @@ List<VRouteElement> buildAppRoutes(BuildContext context) {
                 Paths.settings,
                 Paths.api,
                 Paths.apiDetails,
+                Paths.feed,
                 Paths.profile,
                 Paths.theme,
                 Paths.notifications,
@@ -81,6 +83,10 @@ List<VRouteElement> buildAppRoutes(BuildContext context) {
                       buildTransition: slideTransition,
                     ),
                   ],
+                ),
+                VWidget(
+                  path: Paths.feed,
+                  widget: const FeedPage(),
                 ),
               ],
             ),
