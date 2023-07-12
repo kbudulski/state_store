@@ -23,14 +23,16 @@ dependencies:
   # Services
   firebase_service:
     path: ../../services/firebase_service
+  location_service:
+    path: ../../services/location_service
 
   # Repositories
   api_repository:
     path: ../../repositories/api_repository
   authentication_repository:
     path: ../../repositories/authentication_repository
-  firestore_feed_repository:
-    path: ../../repositories/firestore_feed_repository
+  firestore_image_repository:
+    path: ../../repositories/firestore_image_repository
   firestore_user_repository:
     path: ../../repositories/firestore_user_repository
   notification_repository:

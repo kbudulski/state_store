@@ -1,12 +1,16 @@
 import 'package:bloc_app/app/app.dart';
 import 'package:bloc_app/app/app_scaffold.dart';
+import 'package:bloc_app/features/add_image/add_image_page.dart';
 import 'package:bloc_app/features/api/api_page.dart';
 import 'package:bloc_app/features/api_details/api_details_page.dart';
-import 'package:bloc_app/features/feed/feed_page.dart';
+import 'package:bloc_app/features/features/features_page.dart';
+import 'package:bloc_app/features/gallery/gallery_page.dart';
 import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:bloc_app/features/home/home_page.dart';
 import 'package:bloc_app/features/settings/help/help_page.dart';
-import 'package:bloc_app/features/user/user_page.dart';
+import 'package:bloc_app/features/settings/notifications/notifications_page.dart';
+import 'package:bloc_app/features/settings/profile/profile_page.dart';
+import 'package:bloc_app/features/settings/theme/theme_page.dart';
 import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:bloc_app/utils/navigation/routes/settings_route.dart';
 import 'package:bloc_app/utils/navigation/transitions.dart';
@@ -48,7 +52,8 @@ List<VRouteElement> buildAppRoutes(BuildContext context) {
                 Paths.settings,
                 Paths.api,
                 Paths.apiDetails,
-                Paths.feed,
+                Paths.gallery,
+                Paths.addImage,
                 Paths.profile,
                 Paths.theme,
                 Paths.notifications,
@@ -58,9 +63,14 @@ List<VRouteElement> buildAppRoutes(BuildContext context) {
               ],
             ),
             VWidget(
-              key: const ValueKey(Paths.user),
-              path: Paths.user,
-              widget: const UserPage(),
+              key: const ValueKey(Paths.features),
+              path: Paths.features,
+              widget: const FeaturesPage(),
+              aliases: const [
+                Paths.profileFromFeatures,
+                Paths.themeFromFeatures,
+                Paths.notificationsFromFeatures,
+              ],
             ),
           ],
           stackedRoutes: [
@@ -85,8 +95,33 @@ List<VRouteElement> buildAppRoutes(BuildContext context) {
                   ],
                 ),
                 VWidget(
-                  path: Paths.feed,
-                  widget: const FeedPage(),
+                  path: Paths.gallery,
+                  widget: const GalleryPage(),
+                  stackedRoutes: [
+                    VWidget(
+                      path: Paths.addImage,
+                      widget: const AddImagePage(),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            VPopHandler(
+              onPop: (vRedirector) async => vRedirector.to(Paths.features),
+              onSystemPop: (vRedirector) async =>
+                  vRedirector.to(Paths.features),
+              stackedRoutes: [
+                VWidget(
+                  path: Paths.profileFromFeatures,
+                  widget: const ProfilePage(),
+                ),
+                VWidget(
+                  path: Paths.themeFromFeatures,
+                  widget: const ThemePage(),
+                ),
+                VWidget(
+                  path: Paths.notificationsFromFeatures,
+                  widget: const NotificationsPage(),
                 ),
               ],
             ),

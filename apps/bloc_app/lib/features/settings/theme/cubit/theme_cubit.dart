@@ -6,6 +6,12 @@ import 'package:shared_dependencies/flex_color_scheme.dart';
 class ThemeCubit extends HydratedCubit<ThemeState> {
   ThemeCubit() : super(const ThemeState());
 
+  void initializeTheme() {
+    if (state.colorScheme == null) {
+      emit(state.copyWith(colorScheme: FlexScheme.material));
+    }
+  }
+
   void changeColorScheme(FlexScheme scheme) {
     emit(state.copyWith(colorScheme: scheme));
   }

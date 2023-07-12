@@ -8,6 +8,7 @@ class AppCardColored extends StatelessWidget {
     required this.icon,
     this.subtitle,
     this.color,
+    this.onTap,
     super.key,
   });
 
@@ -15,6 +16,7 @@ class AppCardColored extends StatelessWidget {
   final IconData icon;
   final String? subtitle;
   final Color? color;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -23,44 +25,46 @@ class AppCardColored extends StatelessWidget {
       margin: EdgeInsets.zero,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(borderRadius: radius(Dimens.size32)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.only(
-              top: Dimens.size24,
-              right: Dimens.size24,
-            ),
-            alignment: Alignment.topRight,
-            child: Icon(
-              icon,
-              size: Dimens.size32,
-              shadows: const [Shadow(blurRadius: 100)],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: Dimens.size24),
-            child: Text(
-              title,
-              style: context.textTheme.headlineSmall?.copyWith(
-                color: Colors.white,
-              ),
-            ),
-          ),
-          if (subtitle != null)
-            Padding(
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
               padding: const EdgeInsets.only(
-                left: Dimens.size24,
-                bottom: Dimens.size24,
+                top: Dimens.size24,
+                right: Dimens.size24,
               ),
+              alignment: Alignment.topRight,
+              child: Icon(
+                icon,
+                size: Dimens.size32,
+                shadows: const [Shadow(blurRadius: 100)],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: Dimens.size24),
               child: Text(
-                subtitle!,
-                style: context.textTheme.bodySmall?.copyWith(
+                title,
+                style: context.textTheme.headlineSmall?.copyWith(
                   color: Colors.white,
                 ),
               ),
             ),
-        ],
+            if (subtitle != null)
+              Padding(
+                padding: const EdgeInsets.only(left: Dimens.size24),
+                child: Text(
+                  subtitle!,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            AppSpaces.gap24,
+          ],
+        ),
       ),
     );
   }

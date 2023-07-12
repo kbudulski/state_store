@@ -10,6 +10,11 @@ String getFormattedDateWithTimeMonthText(DateTime? dateTime) {
   return DateFormat('dd MMM yyyy, HH:mm').format(dateTime);
 }
 
+String getDateSlashTime(DateTime? dateTime) {
+  if (dateTime == null) return '-';
+  return DateFormat('d MMM / HH:mm').format(dateTime);
+}
+
 String getFormattedDate(DateTime? dateTime) {
   if (dateTime == null) return '-';
   return DateFormat('dd.MM.yyyy').format(dateTime);

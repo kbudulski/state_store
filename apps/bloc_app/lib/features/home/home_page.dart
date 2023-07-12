@@ -1,10 +1,8 @@
 import 'package:bloc_app/features/home/cubit/home_cubit.dart';
-import 'package:bloc_app/features/home/widgets/feature_tiles_section.dart';
 import 'package:bloc_app/utils/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_assets/shared_assets.dart';
-import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
@@ -68,23 +66,13 @@ class HomeView extends StatelessWidget {
             AppSpaces.gap16,
             AppCard(
               title: 'FIRESTORE',
-              coloredLabel: 'Feed',
+              coloredLabel: 'Gallery',
               icon: Icons.image,
               description: 'files, upload, storage',
               image: SharedImages.plants1,
               overlayColor: Colors.pink,
-              onTap: () => context.vRouter.to(Paths.feed),
+              onTap: () => context.vRouter.to(Paths.gallery),
             ),
-            AppSpaces.gap32,
-            Padding(
-              padding: const EdgeInsets.only(left: Dimens.size24),
-              child: Text(
-                'FEATURES',
-                style: context.textTheme.displaySmall,
-              ),
-            ),
-            AppSpaces.gap08,
-            const FeatureTilesSection(),
             const SizedBox(height: Dimens.size64 + Dimens.size32),
           ],
         ),

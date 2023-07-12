@@ -80,10 +80,10 @@ class ScaffoldWithNavBar extends StatelessWidget {
                 ),
               ),
               NavigationDestination(
-                label: 'User',
-                icon: const Icon(Icons.person),
+                label: 'Features',
+                icon: const Icon(Icons.offline_bolt),
                 selectedIcon: Icon(
-                  Icons.person,
+                  Icons.offline_bolt,
                   color: context.color.secondary,
                 ),
               ),
@@ -101,7 +101,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
     if (location == (Paths.home)) {
       return 0;
     }
-    if (location == (Paths.user)) {
+    if (location == (Paths.features)) {
       return 1;
     }
     return 0;
@@ -113,7 +113,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
         VRouter.of(context).to(Paths.home);
         break;
       case 1:
-        VRouter.of(context).to(Paths.user);
+        VRouter.of(context).to(Paths.features);
         break;
     }
   }

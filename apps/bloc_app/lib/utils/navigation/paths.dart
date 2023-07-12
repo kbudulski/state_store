@@ -5,7 +5,7 @@ abstract class Paths {
 
   // Tabs
   static const home = '/home';
-  static const user = '/user';
+  static const features = '/features';
 
   // From home
   static const settings = '$home/settings';
@@ -15,8 +15,13 @@ abstract class Paths {
 
   static const helpFromHome = '$home/help';
 
-  static const feed = '$home/feed';
-  static const addImage = '$feed/addImage';
+  static const gallery = '$home/gallery';
+  static const addImage = '$gallery/addImage';
+
+  // From features
+  static const profileFromFeatures = '$features/profile';
+  static const themeFromFeatures = '$features/theme';
+  static const notificationsFromFeatures = '$features/notifications';
 
   // Settings
   static const profile = '$settings/profile';
