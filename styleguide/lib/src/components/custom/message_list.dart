@@ -80,7 +80,7 @@ class MessageList extends StatelessWidget {
             child: ChatBubble(
               userName: message.name,
               text: message.text,
-              sentByCurrentUser: true,
+              sentByCurrentUser: false,
               date: message.date,
             ),
           ),

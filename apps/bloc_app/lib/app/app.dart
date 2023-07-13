@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (_) => authService),
+        RepositoryProvider(create: (_) => firestoreImageRepository),
         RepositoryProvider(create: (_) => realtimeChatRepository),
         RepositoryProvider(create: (_) => apiRepository),
       ],
