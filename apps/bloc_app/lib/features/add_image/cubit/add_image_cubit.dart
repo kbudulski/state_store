@@ -1,4 +1,4 @@
-import 'package:authentication_repository/authentication_repository.dart';
+import 'package:authentication_service/authentication_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:core_dependencies/file_picker.dart';
 import 'package:firestore_image_repository/firestore_image_repository.dart';
@@ -9,11 +9,11 @@ part 'add_image_cubit.freezed.dart';
 class AddImageCubit extends Cubit<AddImageState> {
   AddImageCubit(
     this.imageRepository,
-    this.authRepository,
+    this.authService,
   ) : super(const AddImageState());
 
   final FirestoreImageRepository imageRepository;
-  final AuthenticationRepository authRepository;
+  final AuthenticationService authService;
 
   void descriptionChanged(String value) {
     emit(state.copyWith(description: value));
@@ -31,8 +31,8 @@ class AddImageCubit extends Cubit<AddImageState> {
     final response = await imageRepository.uploadImage(
       file: state.file!,
       description: state.description,
-      userId: authRepository.currentUser.id,
-      userName: authRepository.currentUser.name ?? 'Anonymous',
+      userId: authService.currentUser.id,
+      userName: authService.currentUser.name ?? 'Anonymous',
       onProgress: (percent) => emit(state.copyWith(uploadPercent: percent)),
     );
     response.fold(

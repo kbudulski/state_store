@@ -12,7 +12,7 @@ class HelpPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => HelpCubit(
         realtimeChatRepository: context.read(),
-        authRepository: context.read(),
+        authService: context.read(),
       ),
       child: const HelpView(),
     );

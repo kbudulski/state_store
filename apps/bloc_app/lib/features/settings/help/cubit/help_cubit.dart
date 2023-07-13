@@ -1,4 +1,4 @@
-import 'package:authentication_repository/authentication_repository.dart';
+import 'package:authentication_service/authentication_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:realtime_chat_repository/realtime_chat_repository.dart';
@@ -9,7 +9,7 @@ part 'help_cubit.freezed.dart';
 class HelpCubit extends Cubit<HelpState> {
   HelpCubit({
     required this.realtimeChatRepository,
-    required this.authRepository,
+    required this.authService,
   }) : super(const HelpState()) {
     realtimeChatRepository.getMessages().listen(
           _emitMessages,
@@ -18,7 +18,7 @@ class HelpCubit extends Cubit<HelpState> {
   }
 
   final RealtimeChatRepository realtimeChatRepository;
-  final AuthenticationRepository authRepository;
+  final AuthenticationService authService;
 
   bool get hasError => state.error != null;
 
@@ -30,7 +30,7 @@ class HelpCubit extends Cubit<HelpState> {
           name: message.name,
           text: message.text,
           date: message.date,
-          sentByCurrentUser: message.uid == authRepository.currentUser.id,
+          sentByCurrentUser: message.uid == authService.currentUser.id,
         ),
       );
     }
@@ -42,8 +42,8 @@ class HelpCubit extends Cubit<HelpState> {
       ChatMessage(
         text: message,
         date: DateTime.now(),
-        name: authRepository.currentUser.name ?? 'Anonymous',
-        uid: authRepository.currentUser.id,
+        name: authService.currentUser.name ?? 'Anonymous',
+        uid: authService.currentUser.id,
       ),
     );
     response.fold(_emitError, (_) {});

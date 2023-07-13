@@ -1,4 +1,4 @@
-name: notification_repository
+name: notification_service
 version: 1.0.0+1
 publish_to: none
 

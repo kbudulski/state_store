@@ -1,22 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_dependencies/firebase_messaging.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:notification_repository/notification_repository.dart';
+import 'package:notification_service/notification_service.dart';
 
 part 'notifications_cubit.freezed.dart';
 
 class NotificationsCubit extends Cubit<NotificationsState> {
   NotificationsCubit({
-    required this.notificationRepository,
+    required this.notificationService,
   }) : super(const NotificationsState()) {
-    notificationRepository.startListeningToNotifications(_onMessageTap);
+    notificationService.startListeningToNotifications(_onMessageTap);
   }
 
-  final NotificationRepository notificationRepository;
+  final NotificationService notificationService;
 
   Future<void> init() async {
-    final data = await notificationRepository.onAppLaunchedFromMessage();
-    final permission = await notificationRepository.getPermissionStatus();
+    final data = await notificationService.onAppLaunchedFromMessage();
+    final permission = await notificationService.getPermissionStatus();
     emit(state.copyWith(status: permission));
     _onMessageTap(data);
   }
@@ -24,7 +24,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   void refreshPermission() {
     if (state.isRefreshingPermissions) return;
     emit(state.copyWith(isRefreshingPermissions: true));
-    notificationRepository.getPermissionStatus().then(
+    notificationService.getPermissionStatus().then(
       (permission) {
         emit(
           state.copyWith(
@@ -37,7 +37,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   }
 
   Future<void> toggleDaily({required bool subscribed}) async {
-    await notificationRepository.changeSubscription(
+    await notificationService.changeSubscription(
       Topic.daily,
       sub: subscribed,
     );

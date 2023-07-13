@@ -14,12 +14,12 @@ dependencies:
   provider: ^6.0.5
 
   # Services
+  authentication_service:
+    path: ../../services/authentication_service
   firebase_service:
     path: ../../services/firebase_service
 
   # Repositories
-  authentication_repository:
-    path: ../../repositories/authentication_repository
 
   # Shared
   firebase_dependencies:

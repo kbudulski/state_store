@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:authentication_repository/authentication_repository.dart';
+import 'package:authentication_service/authentication_service.dart';
 import 'package:firebase_dependencies/firebase_auth.dart';
 
-class AuthenticationRepository {
+class AuthenticationService {
   final _firebaseAuth = FirebaseAuth.instance;
 
   Stream<AppUser> get user {

@@ -1,4 +1,4 @@
-import 'package:authentication_repository/authentication_repository.dart';
+import 'package:authentication_service/authentication_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -6,16 +6,16 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit({
-    required this.authRepository,
+    required this.authService,
   }) : super(
-          authRepository.currentUser == AppUser.empty
+          authService.currentUser == AppUser.empty
               ? const AuthState.unauthenticated()
-              : AuthState.signedIn(authRepository.currentUser),
+              : AuthState.signedIn(authService.currentUser),
         ) {
-    _listenToUserState(authRepository.user);
+    _listenToUserState(authService.user);
   }
 
-  final AuthenticationRepository authRepository;
+  final AuthenticationService authService;
 
   bool get isSignedIn => state.status == AuthStatus.signedIn;
 
@@ -29,5 +29,5 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  Future<void> signOut() async => authRepository.signOut();
+  Future<void> signOut() async => authService.signOut();
 }

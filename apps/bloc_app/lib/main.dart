@@ -1,5 +1,5 @@
 import 'package:api_repository/api_repository.dart';
-import 'package:authentication_repository/authentication_repository.dart';
+import 'package:authentication_service/authentication_service.dart';
 import 'package:bloc_app/app/app.dart';
 import 'package:firebase_service/firebase_service.dart';
 import 'package:firestore_image_repository/firestore_image_repository.dart';
@@ -7,7 +7,7 @@ import 'package:firestore_user_repository/firestore_user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:location_service/location_service.dart';
-import 'package:notification_repository/notification_repository.dart';
+import 'package:notification_service/notification_service.dart';
 import 'package:realtime_chat_repository/realtime_chat_repository.dart';
 import 'package:shared_dependencies/connectivity_plus.dart';
 import 'package:shared_dependencies/dio.dart';
@@ -17,12 +17,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeFirebase();
 
-  final authRepository = AuthenticationRepository();
-  await authRepository.user.first;
+  final authService = AuthenticationService();
+  await authService.user.first;
 
-  final notificationRepository = NotificationRepository();
-  await notificationRepository.requestPermission();
-  await notificationRepository.setupLocalNotifications();
+  final notificationService = NotificationService();
+  await notificationService.requestPermission();
+  await notificationService.setupLocalNotifications();
 
   final firestoreUserRepository = FirestoreUserRepository();
   final firestoreImageRepository = FirestoreImageRepository();
@@ -47,8 +47,8 @@ Future<void> main() async {
 
   runApp(
     MyApp(
-      authRepository: authRepository,
-      notificationRepository: notificationRepository,
+      authService: authService,
+      notificationService: notificationService,
       firestoreUserRepository: firestoreUserRepository,
       firestoreImageRepository: firestoreImageRepository,
       realtimeChatRepository: realtimeChatRepository,

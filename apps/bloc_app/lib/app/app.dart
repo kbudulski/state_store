@@ -1,5 +1,5 @@
 import 'package:api_repository/api_repository.dart';
-import 'package:authentication_repository/authentication_repository.dart';
+import 'package:authentication_service/authentication_service.dart';
 import 'package:bloc_app/features/gallery/cubit/gallery_cubit.dart';
 import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:bloc_app/features/global/network/network_cubit.dart';
@@ -15,7 +15,7 @@ import 'package:firestore_user_repository/firestore_user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location_service/location_service.dart';
-import 'package:notification_repository/notification_repository.dart';
+import 'package:notification_service/notification_service.dart';
 import 'package:realtime_chat_repository/realtime_chat_repository.dart';
 import 'package:shared_dependencies/connectivity_plus.dart';
 import 'package:shared_dependencies/nb_utils.dart';
@@ -28,8 +28,8 @@ final GlobalKey<NavigatorState> rootNavigatorKey =
 
 class MyApp extends StatelessWidget {
   const MyApp({
-    required this.authRepository,
-    required this.notificationRepository,
+    required this.authService,
+    required this.notificationService,
     required this.firestoreUserRepository,
     required this.firestoreImageRepository,
     required this.realtimeChatRepository,
@@ -39,8 +39,8 @@ class MyApp extends StatelessWidget {
     super.key,
   });
 
-  final AuthenticationRepository authRepository;
-  final NotificationRepository notificationRepository;
+  final AuthenticationService authService;
+  final NotificationService notificationService;
   final FirestoreUserRepository firestoreUserRepository;
   final FirestoreImageRepository firestoreImageRepository;
   final RealtimeChatRepository realtimeChatRepository;
@@ -52,18 +52,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(create: (_) => authRepository),
+        RepositoryProvider(create: (_) => authService),
         RepositoryProvider(create: (_) => realtimeChatRepository),
         RepositoryProvider(create: (_) => apiRepository),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) => AuthCubit(authRepository: authRepository),
+            create: (_) => AuthCubit(authService: authService),
           ),
           BlocProvider(
             create: (_) => NotificationsCubit(
-              notificationRepository: notificationRepository,
+              notificationService: notificationService,
             )..init(),
             lazy: false,
           ),
