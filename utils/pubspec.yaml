@@ -1,0 +1,12 @@
+name: utils
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.18.0
+  very_good_analysis: ^4.0.0+1

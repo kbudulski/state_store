@@ -3,8 +3,8 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
-class UploadProgressIndicator extends StatelessWidget {
-  const UploadProgressIndicator(this.uploadPercent, {super.key});
+class AppUploadProgressIndicator extends StatelessWidget {
+  const AppUploadProgressIndicator(this.uploadPercent, {super.key});
 
   final double uploadPercent;
 

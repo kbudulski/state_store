@@ -1,5 +1,5 @@
+import 'package:bloc_app/features/global/user_data/user_data_cubit.dart';
 import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
-import 'package:bloc_app/features/settings/notifications/widgets/daily_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/app_settings.dart';
@@ -29,7 +29,20 @@ class NotificationsPage extends StatelessWidget {
                   iconBackgroundColor: Colors.cyan,
                   trailing: _buildPermissionRefreshButton(context, state),
                 ),
-                const DailyCard(),
+                Builder(
+                  builder: (context) => AppSwitchCard(
+                    icon: Icons.access_time,
+                    title: 'Daily',
+                    subtitle: 'Subscribe to daily messages',
+                    value: context.watch<UserDataCubit>().subscribedToDaily,
+                    onChanged: (value) {
+                      context
+                          .read<NotificationsCubit>()
+                          .toggleDaily(subscribed: value);
+                      context.read<UserDataCubit>().saveDailySubscription();
+                    },
+                  ),
+                ),
                 const AppListTile(
                   icon: Icons.settings,
                   trailing: Icon(Icons.arrow_outward),

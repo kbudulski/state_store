@@ -1,18 +1,24 @@
-import 'package:bloc_app/features/api/bloc/api_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
-class PlantSearchField extends StatelessWidget {
-  const PlantSearchField({super.key});
+class AppSearchField extends StatelessWidget {
+  const AppSearchField({
+    required this.onChanged,
+    this.hintText,
+    super.key,
+  });
+
+  final ValueChanged<String> onChanged;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.search),
-        hintText: 'Search plants',
+        hintText: hintText,
         isDense: true,
         filled: true,
         fillColor: context.color.inversePrimary,
@@ -25,9 +31,6 @@ class PlantSearchField extends StatelessWidget {
           vertical: Dimens.size08,
         ),
       ),
-      onChanged: (value) {
-        context.read<ApiBloc>().add(PlantsSearched(value));
-      },
     );
   }
 }

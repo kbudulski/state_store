@@ -1,7 +1,7 @@
-import 'package:bloc_app/utils/enum/filter_enums.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 class FilterButton extends StatelessWidget {
   const FilterButton({

@@ -1,12 +1,11 @@
 import 'package:bloc_app/features/gallery/cubit/gallery_cubit.dart';
-import 'package:bloc_app/utils/converters.dart';
-import 'package:bloc_app/utils/date_formatters.dart';
 import 'package:firestore_image_repository/firestore_image_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 class ImageDetailsPage extends StatelessWidget {
   const ImageDetailsPage({required this.image, super.key});
@@ -51,24 +50,24 @@ class ImageDetailsPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SimpleInfoRow(
+                      AppSimpleInfoRow(
                         text: 'Author',
                         value: image.userName,
                       ),
                       AppSpaces.gap12,
-                      SimpleInfoRow(
+                      AppSimpleInfoRow(
                         text: 'Created',
                         value: getFormattedDateWithTimeMonthText(
                           image.createdOn,
                         ),
                       ),
                       AppSpaces.gap12,
-                      SimpleInfoRow(
+                      AppSimpleInfoRow(
                         text: 'File',
                         value: image.fileName,
                       ),
                       AppSpaces.gap12,
-                      SimpleInfoRow(
+                      AppSimpleInfoRow(
                         text: 'Size',
                         value: getFileSizeString(bytes: image.size),
                       ),

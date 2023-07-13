@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
-class FilePickerField extends StatelessWidget {
-  const FilePickerField({
+class AppFilePickerField extends StatelessWidget {
+  const AppFilePickerField({
     this.labelText,
     this.helperText,
     this.onTap,

@@ -1,5 +1,5 @@
 import 'package:bloc_app/features/global/auth/auth_cubit.dart';
-import 'package:bloc_app/utils/navigation/paths.dart';
+import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/nb_utils.dart';

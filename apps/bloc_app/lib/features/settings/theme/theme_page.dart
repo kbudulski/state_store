@@ -1,6 +1,5 @@
 import 'package:bloc_app/features/settings/theme/cubit/theme_cubit.dart';
 import 'package:bloc_app/features/settings/theme/cubit/theme_state.dart';
-import 'package:bloc_app/features/settings/theme/widgets/theme_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/flex_color_scheme.dart';
@@ -27,19 +26,23 @@ class ThemePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: Dimens.size20),
                   child: ListView.separated(
-                    separatorBuilder: (_, __) => const SizedBox(
-                      height: Dimens.size12,
-                    ),
+                    separatorBuilder: (_, __) => AppSpaces.gap12,
                     itemCount: FlexColor.schemes.entries.length,
                     padding: const EdgeInsets.only(
                       top: Dimens.size100,
                       bottom: Dimens.size12,
                     ),
-                    itemBuilder: (_, index) => ThemeCard(
-                      scheme: FlexColor.schemes.entries.elementAt(index),
-                      currentScheme: state.colorScheme,
-                      themeMode: state.themeMode,
-                    ),
+                    itemBuilder: (_, index) {
+                      final scheme = FlexColor.schemes.entries.elementAt(index);
+                      return ThemeCard(
+                        scheme: scheme,
+                        currentScheme: state.colorScheme,
+                        themeMode: state.themeMode,
+                        onSchemeChanged: () => context
+                            .read<ThemeCubit>()
+                            .changeColorScheme(scheme.key),
+                      );
+                    },
                   ),
                 ),
                 AppListTile(

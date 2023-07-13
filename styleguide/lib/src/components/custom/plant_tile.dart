@@ -1,9 +1,9 @@
-import 'package:api_repository/api_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_dependencies/cached_network_image.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 class PlantTile extends StatelessWidget {
   const PlantTile({
@@ -19,7 +19,7 @@ class PlantTile extends StatelessWidget {
   final String? image;
   final String commonName;
   final String scientificName;
-  final Watering? watering;
+  final IconData? watering;
   final List<Sunlight>? sunlightList;
   final VoidCallback? onTap;
 
@@ -83,7 +83,7 @@ class PlantTile extends StatelessWidget {
 
   Widget _buildWateringIcon() {
     if (watering == null) return const SizedBox.shrink();
-    return MiniIconChip(icon: watering!.icon, color: Colors.blueAccent);
+    return MiniIconChip(icon: watering!, color: Colors.blueAccent);
   }
 
   Widget _buildImage() {

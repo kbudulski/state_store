@@ -51,6 +51,8 @@ dependencies:
     path: ../../styleguide
   shared_assets:
     path: ../../dependencies/shared_assets
+  utils:
+    path: ../../utils
 
 dev_dependencies:
   bloc_test: ^9.1.1

@@ -1,22 +1,27 @@
-import 'package:bloc_app/features/settings/help/cubit/help_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
-class MessageInput extends StatefulWidget {
-  const MessageInput({super.key});
+class AppMessageInput extends StatefulWidget {
+  const AppMessageInput({
+    required this.onSendMessage,
+    required this.hasError,
+    super.key,
+  });
+
+  final ValueChanged<String> onSendMessage;
+  final bool hasError;
 
   @override
-  State<MessageInput> createState() => _MessageInputState();
+  State<AppMessageInput> createState() => _AppMessageInputState();
 }
 
-class _MessageInputState extends State<MessageInput> {
+class _AppMessageInputState extends State<AppMessageInput> {
   final TextEditingController _textController = TextEditingController();
 
   void _sendMessage() {
     if (_textController.text.isEmpty) return;
-    context.read<HelpCubit>().sendMessage(_textController.text);
+    widget.onSendMessage(_textController.text);
     _textController.clear();
   }
 
@@ -30,7 +35,7 @@ class _MessageInputState extends State<MessageInput> {
         bottom: Dimens.size12,
       ),
       child: IgnorePointer(
-        ignoring: context.read<HelpCubit>().hasError,
+        ignoring: widget.hasError,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

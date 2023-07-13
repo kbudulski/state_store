@@ -1,9 +1,8 @@
-import 'package:bloc_app/utils/enum/filter_enums.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
-import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 typedef OnFiltersApplied = void Function(
   SunlightFilter? sunFilter,
@@ -122,7 +121,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         Expanded(
           child: FilledButton(
             onPressed: () {
-              context.vRouter.pop();
+              Navigator.of(context).pop();
               onFiltersApplied(_sunFilter, _waterFilter);
             },
             child: const Text('Apply'),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:styleguide/src/components/atoms/loading_indicator.dart';
 import 'package:styleguide/style.dart';
 
-class UploadButton extends StatelessWidget {
-  const UploadButton({
+class AppUploadButton extends StatelessWidget {
+  const AppUploadButton({
     required this.isUploading,
     required this.isSuccess,
     required this.onPressed,

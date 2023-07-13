@@ -34,7 +34,7 @@ class AddImageView extends StatelessWidget {
               padding: const EdgeInsets.all(Dimens.size16),
               child: Column(
                 children: [
-                  FilePickerField(
+                  AppFilePickerField(
                     labelText: state.file != null ? state.file!.name : 'File',
                     helperText: 'Select an image to upload',
                     onTap: context.read<AddImageCubit>().onFilePicked,
@@ -47,9 +47,9 @@ class AddImageView extends StatelessWidget {
                     onChanged: context.read<AddImageCubit>().descriptionChanged,
                   ),
                   const Spacer(),
-                  UploadProgressIndicator(state.uploadPercent),
+                  AppUploadProgressIndicator(state.uploadPercent),
                   AppSpaces.gap16,
-                  UploadButton(
+                  AppUploadButton(
                     isUploading: state.isUploading,
                     isSuccess: state.isSuccess,
                     onPressed: state.areFieldsFilled

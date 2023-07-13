@@ -1,6 +1,4 @@
-import 'package:bloc_app/features/settings/theme/cubit/theme_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/flex_color_scheme.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
@@ -9,6 +7,7 @@ class ThemeCard extends StatelessWidget {
   const ThemeCard({
     required this.scheme,
     required this.themeMode,
+    required this.onSchemeChanged,
     this.currentScheme,
     super.key,
   });
@@ -16,6 +15,7 @@ class ThemeCard extends StatelessWidget {
   final MapEntry<FlexScheme, FlexSchemeData> scheme;
   final ThemeMode? themeMode;
   final FlexScheme? currentScheme;
+  final VoidCallback onSchemeChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ThemeCard extends StatelessWidget {
       child: Material(
         color: _getPrimaryColor(scheme.value, themeMode),
         child: InkWell(
-          onTap: () => context.read<ThemeCubit>().changeColorScheme(scheme.key),
+          onTap: onSchemeChanged,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -60,9 +60,7 @@ class ThemeCard extends StatelessWidget {
                 ),
                 optionButtonBorderRadius: Dimens.size24,
                 selected: scheme.key == currentScheme,
-                onSelect: () {
-                  context.read<ThemeCubit>().changeColorScheme(scheme.key);
-                },
+                onSelect: onSchemeChanged,
               ),
             ],
           ),

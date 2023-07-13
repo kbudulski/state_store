@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:api_repository/api_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:bloc_app/utils/enum/filter_enums.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_dependencies/rxdart.dart';
+import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 part 'api_bloc.freezed.dart';
 part 'api_event.dart';
@@ -26,7 +27,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     );
     on<PlantsSearched>(
       _onPlantsSearched,
-      transformer: debounce(const Duration(milliseconds: 600)),
+      transformer: debounce(AppTimes.millis600),
     );
     on<PlantsFiltered>(
       _onPlantsFiltered,

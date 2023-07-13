@@ -1,20 +1,28 @@
-import 'package:bloc_app/features/settings/help/cubit/ui_message.dart';
-import 'package:bloc_app/utils/date_formatters.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 class ChatBubble extends StatelessWidget {
-  const ChatBubble(this.message, {super.key});
+  const ChatBubble({
+    required this.userName,
+    required this.text,
+    required this.date,
+    required this.sentByCurrentUser,
+    super.key,
+  });
 
-  final UIMessage message;
+  final String userName;
+  final String text;
+  final DateTime date;
+  final bool sentByCurrentUser;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (!message.sentByCurrentUser) _buildUserName(context),
+        if (!sentByCurrentUser) _buildUserName(context),
         _buildMessage(context),
         _buildTimeSentInfo(context),
       ],
@@ -30,7 +38,7 @@ class ChatBubble extends StatelessWidget {
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(
-          message.name.split(' ').first,
+          userName.split(' ').first,
           style: context.textTheme.labelSmall?.copyWith(
             color: context.color.onBackground.withOpacity(0.7),
           ),
@@ -41,8 +49,7 @@ class ChatBubble extends StatelessWidget {
 
   Widget _buildMessage(BuildContext context) {
     return Align(
-      alignment:
-          message.sentByCurrentUser ? Alignment.topRight : Alignment.topLeft,
+      alignment: sentByCurrentUser ? Alignment.topRight : Alignment.topLeft,
       child: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: Dimens.size12,
@@ -50,12 +57,12 @@ class ChatBubble extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: radius(Dimens.size16),
-          color: message.sentByCurrentUser
+          color: sentByCurrentUser
               ? context.color.secondary
               : context.color.primary,
         ),
         child: Text(
-          message.text,
+          text,
           style: context.textTheme.bodyMedium?.copyWith(
             color: context.color.onPrimary,
           ),
@@ -72,10 +79,9 @@ class ChatBubble extends StatelessWidget {
         top: Dimens.size04,
       ),
       child: Align(
-        alignment:
-            message.sentByCurrentUser ? Alignment.topRight : Alignment.topLeft,
+        alignment: sentByCurrentUser ? Alignment.topRight : Alignment.topLeft,
         child: Text(
-          getFormattedTime(message.date),
+          getFormattedTime(date),
           style: context.textTheme.labelSmall?.copyWith(
             color: context.color.onBackground.withOpacity(0.7),
           ),

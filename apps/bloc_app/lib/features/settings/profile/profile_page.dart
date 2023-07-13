@@ -1,11 +1,11 @@
 import 'package:bloc_app/features/global/auth/auth_cubit.dart';
-import 'package:bloc_app/utils/date_formatters.dart';
-import 'package:bloc_app/utils/navigation/paths.dart';
+import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -22,7 +22,7 @@ class ProfilePage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              UserInfoCard(
+              AppUserInfoCard(
                 userName: user.name ?? 'User',
                 userPhotoURL: NetworkImage(user.photoURL ?? ''),
               ),

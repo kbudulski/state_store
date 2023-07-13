@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
-class SimpleInfoRow extends StatelessWidget {
-  const SimpleInfoRow({
+class AppSimpleInfoRow extends StatelessWidget {
+  const AppSimpleInfoRow({
     required this.text,
     required this.value,
     super.key,

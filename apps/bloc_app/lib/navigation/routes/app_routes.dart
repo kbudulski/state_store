@@ -5,21 +5,20 @@ import 'package:bloc_app/features/api/api_page.dart';
 import 'package:bloc_app/features/api_details/api_details_page.dart';
 import 'package:bloc_app/features/features/features_page.dart';
 import 'package:bloc_app/features/gallery/gallery_page.dart';
-import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:bloc_app/features/home/home_page.dart';
 import 'package:bloc_app/features/settings/help/help_page.dart';
 import 'package:bloc_app/features/settings/notifications/notifications_page.dart';
 import 'package:bloc_app/features/settings/profile/profile_page.dart';
 import 'package:bloc_app/features/settings/theme/theme_page.dart';
-import 'package:bloc_app/utils/navigation/paths.dart';
-import 'package:bloc_app/utils/navigation/routes/settings_route.dart';
-import 'package:bloc_app/utils/navigation/transitions.dart';
+import 'package:bloc_app/navigation/paths.dart';
+import 'package:bloc_app/navigation/routes/settings_route.dart';
+import 'package:bloc_app/navigation/transitions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 
-List<VRouteElement> buildAppRoutes(BuildContext context) {
+// ignore_for_file: avoid_positional_boolean_parameters
+List<VRouteElement> buildAppRoutes(bool isSignedIn) {
   return [
     VWidget(path: Paths.splash, widget: const SplashPage()),
     VWidget(
@@ -33,11 +32,8 @@ List<VRouteElement> buildAppRoutes(BuildContext context) {
     ),
     VGuard(
       beforeEnter: (vRedirector) async {
-        if (context.read<AuthCubit>().isSignedIn) {
-          return;
-        } else {
-          return vRedirector.to(Paths.login);
-        }
+        if (isSignedIn) return;
+        return vRedirector.to(Paths.login);
       },
       stackedRoutes: [
         VNester(

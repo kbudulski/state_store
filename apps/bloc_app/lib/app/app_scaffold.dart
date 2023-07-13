@@ -1,10 +1,9 @@
 import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
-import 'package:bloc_app/utils/navigation/paths.dart';
+import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/vrouter.dart';
-import 'package:styleguide/style.dart';
+import 'package:styleguide/components.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold(this.child, {super.key});
@@ -46,52 +45,10 @@ class AppScaffold extends StatelessWidget {
           },
         ),
       ],
-      child: ScaffoldWithNavBar(child),
-    );
-  }
-}
-
-class ScaffoldWithNavBar extends StatelessWidget {
-  const ScaffoldWithNavBar(this.child, {super.key});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: child,
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterFloat,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimens.size20),
-        child: ClipRRect(
-          borderRadius: radius(Dimens.size24),
-          child: NavigationBar(
-            height: Dimens.size64,
-            indicatorColor: Colors.transparent,
-            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-            destinations: [
-              NavigationDestination(
-                label: 'Home',
-                icon: const Icon(Icons.home),
-                selectedIcon: Icon(
-                  Icons.home,
-                  color: context.color.secondary,
-                ),
-              ),
-              NavigationDestination(
-                label: 'Features',
-                icon: const Icon(Icons.offline_bolt),
-                selectedIcon: Icon(
-                  Icons.offline_bolt,
-                  color: context.color.secondary,
-                ),
-              ),
-            ],
-            selectedIndex: _calculateSelectedIndex(context),
-            onDestinationSelected: (int idx) => _onItemTapped(idx, context),
-          ),
-        ),
+      child: ScaffoldWithNavBar(
+        selectedIndex: _calculateSelectedIndex(context),
+        onDestinationSelected: (index) => _onItemTapped(index, context),
+        child: child,
       ),
     );
   }

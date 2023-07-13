@@ -1,6 +1,5 @@
 import 'package:api_repository/api_repository.dart';
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:bloc_app/app/connectivity_dialog.dart';
 import 'package:bloc_app/features/gallery/cubit/gallery_cubit.dart';
 import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:bloc_app/features/global/network/network_cubit.dart';
@@ -9,8 +8,8 @@ import 'package:bloc_app/features/maps/cubit/maps_cubit.dart';
 import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
 import 'package:bloc_app/features/settings/theme/cubit/theme_cubit.dart';
 import 'package:bloc_app/features/settings/theme/cubit/theme_state.dart';
-import 'package:bloc_app/utils/navigation/paths.dart';
-import 'package:bloc_app/utils/navigation/routes/app_routes.dart';
+import 'package:bloc_app/navigation/paths.dart';
+import 'package:bloc_app/navigation/routes/app_routes.dart';
 import 'package:firestore_image_repository/firestore_image_repository.dart';
 import 'package:firestore_user_repository/firestore_user_repository.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +20,7 @@ import 'package:realtime_chat_repository/realtime_chat_repository.dart';
 import 'package:shared_dependencies/connectivity_plus.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/vrouter.dart';
+import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
@@ -53,9 +53,6 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (_) => authRepository),
-        RepositoryProvider(create: (_) => notificationRepository),
-        RepositoryProvider(create: (_) => firestoreUserRepository),
-        RepositoryProvider(create: (_) => firestoreImageRepository),
         RepositoryProvider(create: (_) => realtimeChatRepository),
         RepositoryProvider(create: (_) => apiRepository),
       ],
@@ -112,9 +109,9 @@ class AppView extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           navigatorKey: rootNavigatorKey,
           initialUrl: _getInitialUrl(context),
-          routes: buildAppRoutes(context),
+          routes: buildAppRoutes(context.read<AuthCubit>().isSignedIn),
           builder: (_, child) => BlocListener<NetworkCubit, NetworkState>(
-            listenWhen: _isNetworkDisconnected,
+            listenWhen: (_, state) => !state.isConnected,
             listener: _showInfoDialog,
             child: child,
           ),
@@ -123,13 +120,11 @@ class AppView extends StatelessWidget {
     );
   }
 
-  bool _isNetworkDisconnected(_, NetworkState state) =>
-      !state.isConnected && rootNavigatorKey.currentContext != null;
-
   void _showInfoDialog(BuildContext context, NetworkState state) {
+    if (rootNavigatorKey.currentContext == null) return;
     showDialog<void>(
       context: rootNavigatorKey.currentContext!,
-      builder: (_) => const ConnectivityDialog(),
+      builder: (_) => ConnectivityDialog(rootNavigatorKey.currentContext!),
     );
   }
 

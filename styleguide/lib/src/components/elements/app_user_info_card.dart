@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/style.dart';
 
-class UserInfoCard extends StatelessWidget {
-  const UserInfoCard({
+class AppUserInfoCard extends StatelessWidget {
+  const AppUserInfoCard({
     this.userName = 'User',
     this.userPhotoURL,
     super.key,

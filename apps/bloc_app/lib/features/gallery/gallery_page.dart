@@ -1,6 +1,6 @@
 import 'package:bloc_app/features/gallery/cubit/gallery_cubit.dart';
-import 'package:bloc_app/features/gallery/widgets/image_details_page.dart';
-import 'package:bloc_app/utils/navigation/paths.dart';
+import 'package:bloc_app/features/gallery/image_details_page.dart';
+import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/flutter_staggered_grid_view.dart';
@@ -50,7 +50,7 @@ class _GalleryPageState extends State<GalleryPage> {
               crossAxisCount: 3,
               itemBuilder: (context, index) {
                 final image = state.images[index];
-                return ImageCard(
+                return AppImageCard(
                   imageUrl: image.url,
                   onTap: () => showDialog<void>(
                     context: context,

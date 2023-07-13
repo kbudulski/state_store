@@ -1,10 +1,6 @@
 import 'package:api_repository/api_repository.dart';
 import 'package:bloc_app/features/api/bloc/api_bloc.dart';
-import 'package:bloc_app/features/api/widgets/filter_bottom_sheet.dart';
-import 'package:bloc_app/features/api/widgets/filter_button.dart';
-import 'package:bloc_app/features/api/widgets/plant_search_field.dart';
-import 'package:bloc_app/features/api/widgets/plant_tile.dart';
-import 'package:bloc_app/utils/navigation/paths.dart';
+import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/infinite_scroll_pagination.dart';
@@ -68,7 +64,14 @@ class _ApiViewState extends State<ApiView> {
                   ),
                   child: Row(
                     children: [
-                      const Expanded(child: PlantSearchField()),
+                      Expanded(
+                        child: AppSearchField(
+                          hintText: 'Search plants',
+                          onChanged: (value) {
+                            context.read<ApiBloc>().add(PlantsSearched(value));
+                          },
+                        ),
+                      ),
                       AppSpaces.gap08,
                       FilterButton(
                         sunFilter: state.sunlightFilter,
@@ -96,14 +99,9 @@ class _ApiViewState extends State<ApiView> {
         child: FilterBottomSheet(
           sunFilter: state.sunlightFilter,
           waterFilter: state.wateringFilter,
-          onFiltersApplied: (sun, water) {
-            context.read<ApiBloc>().add(
-                  PlantsFiltered(
-                    sunFilter: sun,
-                    waterFilter: water,
-                  ),
-                );
-          },
+          onFiltersApplied: (sun, water) => context.read<ApiBloc>().add(
+                PlantsFiltered(sunFilter: sun, waterFilter: water),
+              ),
         ),
       ),
     );
@@ -137,7 +135,7 @@ class _ApiViewState extends State<ApiView> {
               image: plant.defaultImage?.regularUrl,
               commonName: plant.commonName ?? 'Unknown',
               scientificName: plant.scientificName?.single ?? 'Unknown',
-              watering: plant.watering,
+              watering: plant.watering?.icon,
               sunlightList: plant.sunlight,
               onTap: () => context.vRouter.to(
                 Paths.apiDetails.replaceFirst(':id', plant.id.toString()),

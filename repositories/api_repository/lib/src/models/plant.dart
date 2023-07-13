@@ -1,6 +1,7 @@
 import 'package:api_repository/src/models/photo.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:utils/utils.dart';
 
 part 'plant.g.dart';
 
@@ -50,19 +51,6 @@ enum Watering {
   const Watering(this.icon);
 
   final IconData icon;
-}
-
-enum Sunlight {
-  fullShade(Icons.nightlight, Colors.indigoAccent),
-  partShade(Icons.cloud, Colors.blueGrey),
-  partShadePartSun(Icons.brightness_6, Colors.orangeAccent),
-  fullSun(Icons.sunny, Colors.amber),
-  unknown(Icons.help, Colors.grey);
-
-  const Sunlight(this.icon, this.color);
-
-  final IconData icon;
-  final Color color;
 }
 
 class CustomSunlightConverter

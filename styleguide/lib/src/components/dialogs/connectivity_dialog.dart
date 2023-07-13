@@ -1,8 +1,9 @@
-import 'package:bloc_app/app/app.dart';
 import 'package:flutter/material.dart';
 
 class ConnectivityDialog extends StatelessWidget {
-  const ConnectivityDialog({super.key});
+  const ConnectivityDialog(this.globalContext, {super.key});
+
+  final BuildContext globalContext;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class ConnectivityDialog extends StatelessWidget {
       ),
       actions: [
         TextButton(
-          onPressed: Navigator.of(rootNavigatorKey.currentContext!).pop,
+          onPressed: Navigator.of(globalContext).pop,
           child: const Text('OK'),
         ),
       ],

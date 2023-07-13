@@ -3,7 +3,7 @@ import 'package:bloc_app/features/global/network/network_cubit.dart';
 import 'package:bloc_app/features/maps/cubit/maps_cubit.dart';
 import 'package:bloc_app/features/maps/maps_page.dart';
 import 'package:bloc_app/features/settings/theme/cubit/theme_cubit.dart';
-import 'package:bloc_app/utils/navigation/paths.dart';
+import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/vrouter.dart';
@@ -42,7 +42,7 @@ class FeaturesPage extends StatelessWidget {
               AppCardColored(
                 title: 'THEME',
                 icon: Icons.palette,
-                subtitle: 'color schemes, global changes | $theme',
+                subtitle: 'color schemes, dark mode | $theme',
                 color: Colors.pinkAccent,
                 onTap: () => context.vRouter.to(Paths.themeFromFeatures),
               ),
