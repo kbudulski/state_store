@@ -1,16 +1,8 @@
-import 'package:bloc_app/app/app.dart';
-import 'package:bloc_app/app/app_scaffold.dart';
-import 'package:bloc_app/features/add_image/add_image_page.dart';
-import 'package:bloc_app/features/api/api_page.dart';
-import 'package:bloc_app/features/api_details/api_details_page.dart';
-import 'package:bloc_app/features/features/features_page.dart';
-import 'package:bloc_app/features/gallery/gallery_page.dart';
-import 'package:bloc_app/features/settings/help/help_page.dart';
-import 'package:bloc_app/features/settings/notifications/notifications_page.dart';
-import 'package:bloc_app/features/settings/profile/profile_page.dart';
-import 'package:bloc_app/features/settings/theme/theme_page.dart';
-import 'package:bloc_app/navigation/routes/settings_route.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_app/app/app.dart';
+import 'package:riverpod_app/app/app_scaffold.dart';
+import 'package:riverpod_app/features/api/api_page.dart';
+import 'package:riverpod_app/navigation/routes/settings_route.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:utils/utils.dart';
@@ -22,7 +14,7 @@ List<VRouteElement> buildAppRoutes(bool isSignedIn) {
     VWidget(
       path: Paths.login,
       widget: LoginPage(
-        name: 'BLOC',
+        name: 'RIVERPOD',
         onSignedIn: () {
           rootNavigatorKey.currentContext?.vRouter.to(Paths.home);
         },
@@ -59,7 +51,8 @@ List<VRouteElement> buildAppRoutes(bool isSignedIn) {
             VWidget(
               key: const ValueKey(Paths.features),
               path: Paths.features,
-              widget: const FeaturesPage(),
+              // widget: const FeaturesPage(),
+              widget: const Placeholder(),
               aliases: const [
                 Paths.profileFromFeatures,
                 Paths.themeFromFeatures,
@@ -75,7 +68,8 @@ List<VRouteElement> buildAppRoutes(bool isSignedIn) {
                 SettingsRoute(),
                 VWidget(
                   path: Paths.helpFromHome,
-                  widget: const HelpPage(),
+                  // widget: const HelpPage(),
+                  widget: const Placeholder(),
                 ),
                 VWidget(
                   path: Paths.api,
@@ -83,18 +77,21 @@ List<VRouteElement> buildAppRoutes(bool isSignedIn) {
                   stackedRoutes: [
                     VWidget(
                       path: Paths.apiDetails,
-                      widget: const ApiDetailsPage(),
+                      // widget: const ApiDetailsPage(),
+                      widget: const Placeholder(),
                       buildTransition: slideTransition,
                     ),
                   ],
                 ),
                 VWidget(
                   path: Paths.gallery,
-                  widget: const GalleryPage(),
+                  // widget: const GalleryPage(),
+                  widget: const Placeholder(),
                   stackedRoutes: [
                     VWidget(
                       path: Paths.addImage,
-                      widget: const AddImagePage(),
+                      // widget: const AddImagePage(),
+                      widget: const Placeholder(),
                     ),
                   ],
                 ),
@@ -107,15 +104,18 @@ List<VRouteElement> buildAppRoutes(bool isSignedIn) {
               stackedRoutes: [
                 VWidget(
                   path: Paths.profileFromFeatures,
-                  widget: const ProfilePage(),
+                  // widget: const ProfilePage(),
+                  widget: const Placeholder(),
                 ),
                 VWidget(
                   path: Paths.themeFromFeatures,
-                  widget: const ThemePage(),
+                  // widget: const ThemePage(),
+                  widget: const Placeholder(),
                 ),
                 VWidget(
                   path: Paths.notificationsFromFeatures,
-                  widget: const NotificationsPage(),
+                  // widget: const NotificationsPage(),
+                  widget: const Placeholder(),
                 ),
               ],
             ),

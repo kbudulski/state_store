@@ -1,9 +1,9 @@
-import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_assets/shared_assets.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

@@ -1,12 +1,12 @@
 import 'package:bloc_app/features/gallery/cubit/gallery_cubit.dart';
 import 'package:bloc_app/features/gallery/image_details_page.dart';
-import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/flutter_staggered_grid_view.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 class GalleryPage extends StatefulWidget {
   const GalleryPage({super.key});

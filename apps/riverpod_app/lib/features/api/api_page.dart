@@ -1,44 +1,32 @@
 import 'package:api_repository/api_repository.dart';
-import 'package:bloc_app/features/api/bloc/api_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_app/features/api/provider/api_provider.dart';
 import 'package:shared_dependencies/infinite_scroll_pagination.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
 import 'package:utils/utils.dart';
 
-class ApiPage extends StatelessWidget {
+class ApiPage extends ConsumerStatefulWidget {
   const ApiPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ApiBloc(
-        apiRepository: context.read(),
-      )..add(PlantsFetched()),
-      child: const ApiView(),
-    );
-  }
+  ApiPageState createState() => ApiPageState();
 }
 
-class ApiView extends StatefulWidget {
-  const ApiView({super.key});
-
-  @override
-  State<ApiView> createState() => _ApiViewState();
-}
-
-class _ApiViewState extends State<ApiView> {
+class ApiPageState extends ConsumerState<ApiPage> {
+  final debouncer = Debouncer(duration: AppTimes.millis600);
   final PagingController<int, Plant> _pagingController = PagingController(
-    firstPageKey: 1,
+    firstPageKey: 0,
   );
 
   @override
   void initState() {
     super.initState();
+    Future(() => ref.read(apiProvider.notifier).getPlants());
     _pagingController.addPageRequestListener((_) {
-      context.read<ApiBloc>().add(PlantsFetched());
+      ref.read(apiProvider.notifier).getPlants();
     });
   }
 
@@ -50,41 +38,40 @@ class _ApiViewState extends State<ApiView> {
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(apiProvider);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         appBar: AppBar(title: const Text('Plants'), scrolledUnderElevation: 0),
-        body: BlocBuilder<ApiBloc, ApiState>(
-          builder: (_, state) {
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: Dimens.size08,
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Dimens.size08,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: AppSearchField(
+                      hintText: 'Search plants',
+                      onChanged: (value) {
+                        debouncer.run(() {
+                          ref.read(apiProvider.notifier).searchPlants(value);
+                        });
+                      },
+                    ),
                   ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: AppSearchField(
-                          hintText: 'Search plants',
-                          onChanged: (value) {
-                            context.read<ApiBloc>().add(PlantsSearched(value));
-                          },
-                        ),
-                      ),
-                      AppSpaces.gap08,
-                      FilterButton(
-                        sunFilter: state.sunlightFilter,
-                        waterFilter: state.wateringFilter,
-                        onPressed: () => _openFilterSheet(state),
-                      ),
-                    ],
+                  AppSpaces.gap08,
+                  FilterButton(
+                    sunFilter: state.sunlightFilter,
+                    waterFilter: state.wateringFilter,
+                    onPressed: () => _openFilterSheet(state),
                   ),
-                ),
-                Expanded(child: _buildBody(state)),
-              ],
-            );
-          },
+                ],
+              ),
+            ),
+            Expanded(child: _buildBody(state)),
+          ],
         ),
       ),
     );
@@ -94,15 +81,12 @@ class _ApiViewState extends State<ApiView> {
     return showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
-      builder: (_) => BlocProvider.value(
-        value: context.read<ApiBloc>(),
-        child: FilterBottomSheet(
-          sunFilter: state.sunlightFilter,
-          waterFilter: state.wateringFilter,
-          onFiltersApplied: (sun, water) => context.read<ApiBloc>().add(
-                PlantsFiltered(sunFilter: sun, waterFilter: water),
-              ),
-        ),
+      builder: (_) => FilterBottomSheet(
+        sunFilter: state.sunlightFilter,
+        waterFilter: state.wateringFilter,
+        onFiltersApplied: (sun, water) => ref
+            .read(apiProvider.notifier)
+            .filterPlants(sunlightFilter: sun, wateringFilter: water),
       ),
     );
   }

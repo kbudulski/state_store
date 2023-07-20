@@ -8,7 +8,6 @@ import 'package:bloc_app/features/maps/cubit/maps_cubit.dart';
 import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
 import 'package:bloc_app/features/settings/theme/cubit/theme_cubit.dart';
 import 'package:bloc_app/features/settings/theme/cubit/theme_state.dart';
-import 'package:bloc_app/navigation/paths.dart';
 import 'package:bloc_app/navigation/routes/app_routes.dart';
 import 'package:firestore_image_repository/firestore_image_repository.dart';
 import 'package:firestore_user_repository/firestore_user_repository.dart';
@@ -22,6 +21,7 @@ import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');

@@ -1,9 +1,6 @@
-import 'package:bloc_app/features/settings/about/about_page.dart';
-import 'package:bloc_app/features/settings/help/help_page.dart';
-import 'package:bloc_app/features/settings/notifications/notifications_page.dart';
-import 'package:bloc_app/features/settings/profile/profile_page.dart';
-import 'package:bloc_app/features/settings/settings_page.dart';
-import 'package:bloc_app/features/settings/theme/theme_page.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:riverpod_app/features/settings/settings_page.dart';
+import 'package:riverpod_app/features/settings/theme/theme_page.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:utils/utils.dart';
 
@@ -16,7 +13,8 @@ class SettingsRoute extends VRouteElementBuilder {
           stackedRoutes: [
             VWidget(
               path: Paths.profile,
-              widget: const ProfilePage(),
+              // widget: const ProfilePage(),
+              widget: const Placeholder(),
             ),
             VWidget(
               path: Paths.theme,
@@ -24,15 +22,18 @@ class SettingsRoute extends VRouteElementBuilder {
             ),
             VWidget(
               path: Paths.notifications,
-              widget: const NotificationsPage(),
+              // widget: const NotificationsPage(),
+              widget: const Placeholder(),
             ),
             VWidget(
               path: Paths.help,
-              widget: const HelpPage(),
+              // widget: const HelpPage(),
+              widget: const Placeholder(),
             ),
             VWidget(
               path: Paths.about,
-              widget: const AboutPage(),
+              // widget: const AboutPage(),
+              widget: const Placeholder(),
             ),
           ],
         ),

@@ -1,6 +1,6 @@
-import 'package:bloc_app/features/global/auth/auth_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_app/providers/auth_provider.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/permission_handler.dart';
 import 'package:shared_dependencies/vrouter.dart';
@@ -8,11 +8,11 @@ import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
 import 'package:utils/utils.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: CustomScrollView(
@@ -46,7 +46,7 @@ class SettingsPage extends StatelessWidget {
                   AppSpaces.gap20,
                   _buildInfoGroup(context),
                   AppSpaces.gap20,
-                  _buildLogoutButton(context),
+                  _buildLogoutButton(context, ref),
                 ],
               ),
             ),
@@ -120,14 +120,14 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  AppListTile _buildLogoutButton(BuildContext context) {
+  AppListTile _buildLogoutButton(BuildContext context, WidgetRef ref) {
     return AppListTile(
       icon: Icons.logout,
       title: 'Logout',
       subtitle: 'Logout from the app',
       iconBackgroundColor: Colors.redAccent,
       onTap: () async {
-        await context.read<AuthCubit>().signOut().then(
+        await ref.read(authProvider.notifier).signOut().then(
               (_) => context.vRouter.to(Paths.login),
             );
       },

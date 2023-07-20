@@ -1,9 +1,9 @@
 import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
-import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
+import 'package:utils/utils.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold(this.child, {super.key});

@@ -3,12 +3,12 @@ import 'package:bloc_app/features/global/network/network_cubit.dart';
 import 'package:bloc_app/features/maps/cubit/maps_cubit.dart';
 import 'package:bloc_app/features/maps/maps_page.dart';
 import 'package:bloc_app/features/settings/theme/cubit/theme_cubit.dart';
-import 'package:bloc_app/navigation/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
+import 'package:utils/utils.dart';
 
 class FeaturesPage extends StatelessWidget {
   const FeaturesPage({super.key});
@@ -23,7 +23,6 @@ class FeaturesPage extends StatelessWidget {
     final location =
         context.watch<MapsCubit>().state.cachedLocation ?? 'Unknown';
     return Scaffold(
-      // appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Dimens.size16),
         child: SingleChildScrollView(

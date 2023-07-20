@@ -6,7 +6,7 @@ part 'api_repository.g.dart';
 
 @RestApi(baseUrl: 'https://perenual.com/api/')
 abstract class ApiRepository {
-  factory ApiRepository(Dio dio, {String baseUrl}) = _ApiRepository;
+  factory ApiRepository(Dio dio) = _ApiRepository;
 
   @GET('species-list?compress=true')
   Future<Plants> getPlants({

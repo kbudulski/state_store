@@ -1,20 +1,34 @@
+import 'package:authentication_service/authentication_service.dart';
+import 'package:firebase_service/firebase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notification_service/notification_service.dart';
+import 'package:riverpod_app/app/app.dart';
+import 'package:riverpod_app/providers/service_providers.dart';
+import 'package:riverpod_app/providers/shared_prefs_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeFirebase();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final authService = AuthenticationService();
+  await authService.user.first;
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Placeholder(),
-    );
-  }
+  final notificationService = NotificationService();
+  await notificationService.requestPermission();
+  await notificationService.setupLocalNotifications();
+
+  final prefs = await SharedPreferences.getInstance();
+
+  runApp(
+    ProviderScope(
+      overrides: [
+        authServiceProvider.overrideWith((_) => authService),
+        notificationServiceProvider.overrideWith((_) => notificationService),
+        sharedPrefsProvider.overrideWith((_) => prefs),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
