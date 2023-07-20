@@ -1,7 +1,7 @@
 import 'package:api_repository/api_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:riverpod_app/features/api/provider/api_repository_provider.dart';
+import 'package:riverpod_app/providers/repository_providers.dart';
 import 'package:utils/utils.dart';
 
 part 'api_provider.freezed.dart';
