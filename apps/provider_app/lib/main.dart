@@ -1,20 +1,58 @@
+import 'package:api_repository/api_repository.dart';
+import 'package:authentication_service/authentication_service.dart';
+import 'package:firebase_service/firebase_service.dart';
+import 'package:firestore_image_repository/firestore_image_repository.dart';
+import 'package:firestore_user_repository/firestore_user_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:location_service/location_service.dart';
+import 'package:notification_service/notification_service.dart';
+import 'package:provider_app/app/app.dart';
+import 'package:realtime_chat_repository/realtime_chat_repository.dart';
+import 'package:shared_dependencies/connectivity_plus.dart';
+import 'package:shared_dependencies/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeFirebase();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final authService = AuthenticationService();
+  await authService.user.first;
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+  final notificationService = NotificationService();
+  await notificationService.requestPermission();
+  await notificationService.setupLocalNotifications();
+
+  final firestoreUserRepository = FirestoreUserRepository();
+  final firestoreImageRepository = FirestoreImageRepository();
+  final realtimeChatRepository = RealtimeChatRepository();
+
+  final apiRepository = ApiRepository(
+    Dio(
+      BaseOptions(
+        queryParameters: {
+          'key': const String.fromEnvironment('API_KEY'),
+        },
       ),
-      home: const Placeholder(),
-    );
-  }
+    ),
+  );
+
+  final prefs = await SharedPreferences.getInstance();
+
+  final connectivity = Connectivity();
+  final locationService = LocationService();
+
+  runApp(
+    MyApp(
+      authService: authService,
+      notificationService: notificationService,
+      firestoreUserRepository: firestoreUserRepository,
+      firestoreImageRepository: firestoreImageRepository,
+      realtimeChatRepository: realtimeChatRepository,
+      apiRepository: apiRepository,
+      connectivity: connectivity,
+      locationService: locationService,
+      prefs: prefs,
+    ),
+  );
 }

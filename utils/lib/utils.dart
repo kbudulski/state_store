@@ -1,6 +1,8 @@
 export 'src/converters.dart';
 export 'src/date_formatters.dart';
 export 'src/debouncer.dart';
+export 'src/extensions/connectivity_extension.dart';
+export 'src/extensions/shared_prefs_extension.dart';
 export 'src/ui/ui_message.dart';
 export 'src/values/filter_enums.dart';
 export 'src/values/paths.dart';

@@ -64,7 +64,7 @@ class AppView extends ConsumerWidget {
 
   void _showDialogOnDisconnectedNetwork(WidgetRef ref, BuildContext context) {
     ref.listen<NetworkState>(networkProvider, (_, NetworkState state) {
-      if (!state.isConnected) {
+      if (!state.status.isConnected) {
         if (rootNavigatorKey.currentContext == null) return;
         showDialog<void>(
           context: rootNavigatorKey.currentContext!,

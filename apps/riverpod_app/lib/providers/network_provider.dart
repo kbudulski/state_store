@@ -25,7 +25,4 @@ class NetworkState {
   NetworkState(this.status);
 
   final ConnectivityResult? status;
-
-  bool get isConnected =>
-      status == ConnectivityResult.wifi || status == ConnectivityResult.mobile;
 }

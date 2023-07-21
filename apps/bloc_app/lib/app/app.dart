@@ -112,7 +112,7 @@ class AppView extends StatelessWidget {
           initialUrl: _getInitialUrl(context),
           routes: buildAppRoutes(context.read<AuthCubit>().isSignedIn),
           builder: (_, child) => BlocListener<NetworkCubit, NetworkState>(
-            listenWhen: (_, state) => !state.isConnected,
+            listenWhen: (_, state) => !state.status.isConnected,
             listener: _showInfoDialog,
             child: child,
           ),
