@@ -8,7 +8,6 @@ class AppScaffold extends StatelessWidget {
 
   final Widget child;
 
-  // TODO(x): add listeners for notifications here
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithNavBar(

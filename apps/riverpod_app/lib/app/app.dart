@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_app/features/settings/notifications/provider/notifications_provider.dart';
 import 'package:riverpod_app/features/settings/theme/provider/theme_provider.dart';
 import 'package:riverpod_app/navigation/routes/app_routes.dart';
 import 'package:riverpod_app/providers/auth_provider.dart';
@@ -12,49 +13,19 @@ import 'package:utils/utils.dart';
 final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
 
-class MyApp extends ConsumerStatefulWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => MyAppState();
-}
-
-class MyAppState extends ConsumerState<MyApp> {
-  bool eagerProvidersInitialized = false;
-
-  void _initializeEagerProviders() {
-    final eagerProviders = [
-      themesProvider,
-    ];
-    final states = eagerProviders.map(ref.watch).toList();
-    if (states.every((state) => state is AsyncData)) {
-      Future(() => setState(() => eagerProvidersInitialized = true));
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _initializeEagerProviders();
-    if (!eagerProvidersInitialized) {
-      return const Center(child: CircularProgressIndicator());
-    } else {
-      return const AppView();
-    }
-  }
-}
-
-class AppView extends ConsumerWidget {
-  const AppView({super.key});
-
-  @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(themesProvider).value;
+    final state = ref.watch(themesProvider);
     _showDialogOnDisconnectedNetwork(ref, context);
+    _handleNotifications(context, ref);
     return VRouter(
       title: 'Riverpod app',
-      theme: AppTheme.light(state?.colorScheme),
-      darkTheme: AppTheme.dark(state?.colorScheme),
-      themeMode: state?.themeMode,
+      theme: AppTheme.light(state.colorScheme),
+      darkTheme: AppTheme.dark(state.colorScheme),
+      themeMode: state.themeMode,
       debugShowCheckedModeBanner: false,
       navigatorKey: rootNavigatorKey,
       initialUrl: _getInitialUrl(ref),
@@ -71,6 +42,25 @@ class AppView extends ConsumerWidget {
           builder: (_) => ConnectivityDialog(rootNavigatorKey.currentContext!),
         );
       }
+    });
+  }
+
+  void _handleNotifications(context, WidgetRef ref) {
+    ref.listen<NotificationsState>(notificationsProvider, (prev, next) {
+      if (next.path == null && next.dailyText == null) return;
+      if (prev?.path != next.path && next.path != null) {
+        VRouter.of(rootNavigatorKey.currentContext!).to(next.path!);
+      }
+      if (prev?.dailyText != next.dailyText && next.dailyText != null) {
+        showDialog<void>(
+          context: rootNavigatorKey.currentContext!,
+          builder: (_) => AlertDialog(
+            title: const Text('Daily reminder'),
+            content: Text(next.dailyText!),
+          ),
+        );
+      }
+      ref.read(notificationsProvider.notifier).cleanMessagePayloadFromState();
     });
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_app/app/app.dart';
 import 'package:riverpod_app/app/app_scaffold.dart';
 import 'package:riverpod_app/features/api/api_page.dart';
+import 'package:riverpod_app/features/settings/notifications/notifications_page.dart';
 import 'package:riverpod_app/navigation/routes/settings_route.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
@@ -114,8 +115,7 @@ List<VRouteElement> buildAppRoutes(bool isSignedIn) {
                 ),
                 VWidget(
                   path: Paths.notificationsFromFeatures,
-                  // widget: const NotificationsPage(),
-                  widget: const Placeholder(),
+                  widget: const NotificationsPage(),
                 ),
               ],
             ),

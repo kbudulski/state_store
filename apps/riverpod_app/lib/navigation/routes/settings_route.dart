@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:riverpod_app/features/settings/notifications/notifications_page.dart';
 import 'package:riverpod_app/features/settings/settings_page.dart';
 import 'package:riverpod_app/features/settings/theme/theme_page.dart';
 import 'package:shared_dependencies/vrouter.dart';
@@ -22,8 +23,7 @@ class SettingsRoute extends VRouteElementBuilder {
             ),
             VWidget(
               path: Paths.notifications,
-              // widget: const NotificationsPage(),
-              widget: const Placeholder(),
+              widget: const NotificationsPage(),
             ),
             VWidget(
               path: Paths.help,

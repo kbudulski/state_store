@@ -34,8 +34,8 @@ class ThemePage extends ConsumerWidget {
                   final scheme = FlexColor.schemes.entries.elementAt(index);
                   return ThemeCard(
                     scheme: scheme,
-                    currentScheme: theme.value?.colorScheme,
-                    themeMode: theme.value?.themeMode,
+                    currentScheme: theme.colorScheme,
+                    themeMode: theme.themeMode,
                     onSchemeChanged: () => ref
                         .read(themesProvider.notifier)
                         .changeColorScheme(scheme.key),
@@ -44,7 +44,7 @@ class ThemePage extends ConsumerWidget {
               ),
             ),
             AppListTile(
-              icon: theme.value?.themeMode == ThemeMode.dark
+              icon: theme.themeMode == ThemeMode.dark
                   ? Icons.dark_mode
                   : Icons.light_mode,
               title: 'Dark Mode',
@@ -54,7 +54,7 @@ class ThemePage extends ConsumerWidget {
               trailing: Switch(
                 activeColor: Colors.white,
                 activeTrackColor: Theme.of(context).primaryColorLight,
-                value: theme.value?.themeMode == ThemeMode.dark,
+                value: theme.themeMode == ThemeMode.dark,
                 onChanged: (_) {
                   ref.read(themesProvider.notifier).toggleDarkMode();
                 },

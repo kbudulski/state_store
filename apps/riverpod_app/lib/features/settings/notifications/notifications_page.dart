@@ -1,17 +1,17 @@
-import 'package:bloc_app/features/global/user_data/user_data_cubit.dart';
-import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_app/features/settings/notifications/provider/notifications_provider.dart';
+import 'package:riverpod_app/providers/user_data/user_data_provider.dart';
 import 'package:shared_dependencies/app_settings.dart';
 import 'package:shared_dependencies/flex_color_scheme.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
 
-class NotificationsPage extends StatelessWidget {
+class NotificationsPage extends ConsumerWidget {
   const NotificationsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(title: const Text('Notifications')),
       body: Padding(
@@ -20,28 +20,29 @@ class NotificationsPage extends StatelessWidget {
         ),
         child: AppTileGroup(
           cards: [
-            BlocBuilder<NotificationsCubit, NotificationsState>(
-              builder: (context, state) {
+            Consumer(
+              builder: (context, ref, _) {
+                final state = ref.watch(notificationsProvider);
                 return AppListTile(
                   icon: Icons.lock_open,
                   title: state.status.name.capitalize,
                   subtitle: 'Permissions status',
                   iconBackgroundColor: Colors.cyan,
-                  trailing: _buildPermissionRefreshButton(context, state),
+                  trailing: _buildPermissionRefreshButton(context, ref, state),
                 );
               },
             ),
-            Builder(
-              builder: (context) => AppSwitchCard(
+            Consumer(
+              builder: (context, ref, _) => AppSwitchCard(
                 icon: Icons.access_time,
                 title: 'Daily',
                 subtitle: 'Subscribe to daily messages',
-                value: context.watch<UserDataCubit>().subscribedToDaily,
+                value: ref.watch(userDataProvider).subscribedToDaily,
                 onChanged: (value) {
-                  context
-                      .read<NotificationsCubit>()
+                  ref
+                      .read(notificationsProvider.notifier)
                       .toggleDaily(subscribed: value);
-                  context.read<UserDataCubit>().saveDailySubscription();
+                  ref.read(userDataProvider.notifier).saveDailySubscription();
                 },
               ),
             ),
@@ -61,6 +62,7 @@ class NotificationsPage extends StatelessWidget {
 
   Widget _buildPermissionRefreshButton(
     BuildContext context,
+    WidgetRef ref,
     NotificationsState state,
   ) {
     if (state.isRefreshingPermissions) {
@@ -69,7 +71,7 @@ class NotificationsPage extends StatelessWidget {
       return IconButton(
         icon: const Icon(Icons.refresh),
         onPressed: () {
-          context.read<NotificationsCubit>().refreshPermission();
+          ref.read(notificationsProvider.notifier).refreshPermission();
         },
       );
     }

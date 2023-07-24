@@ -1,7 +1,8 @@
-import 'package:bloc_app/features/global/user_data/user_data_cubit.dart';
-import 'package:bloc_app/features/settings/notifications/cubit/notifications_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_app/features/settings/notifications/provider/notifications_provider.dart';
+import 'package:provider_app/providers/user_data/user_data_provider.dart';
 import 'package:shared_dependencies/app_settings.dart';
 import 'package:shared_dependencies/flex_color_scheme.dart';
 import 'package:styleguide/components.dart';
@@ -20,28 +21,27 @@ class NotificationsPage extends StatelessWidget {
         ),
         child: AppTileGroup(
           cards: [
-            BlocBuilder<NotificationsCubit, NotificationsState>(
-              builder: (context, state) {
-                return AppListTile(
-                  icon: Icons.lock_open,
-                  title: state.status.name.capitalize,
-                  subtitle: 'Permissions status',
-                  iconBackgroundColor: Colors.cyan,
-                  trailing: _buildPermissionRefreshButton(context, state),
-                );
-              },
+            StateNotifierBuilder(
+              stateNotifier: context.watch<NotificationsProvider>(),
+              builder: (context, state, child) => AppListTile(
+                icon: Icons.lock_open,
+                title: state.status.name.capitalize,
+                subtitle: 'Permissions status',
+                iconBackgroundColor: Colors.cyan,
+                trailing: _buildPermissionRefreshButton(context, state),
+              ),
             ),
             Builder(
               builder: (context) => AppSwitchCard(
                 icon: Icons.access_time,
                 title: 'Daily',
                 subtitle: 'Subscribe to daily messages',
-                value: context.watch<UserDataCubit>().subscribedToDaily,
+                value: context.watch<UserDataProvider>().subscribedToDaily,
                 onChanged: (value) {
                   context
-                      .read<NotificationsCubit>()
+                      .read<NotificationsProvider>()
                       .toggleDaily(subscribed: value);
-                  context.read<UserDataCubit>().saveDailySubscription();
+                  context.read<UserDataProvider>().saveDailySubscription();
                 },
               ),
             ),
@@ -69,7 +69,7 @@ class NotificationsPage extends StatelessWidget {
       return IconButton(
         icon: const Icon(Icons.refresh),
         onPressed: () {
-          context.read<NotificationsCubit>().refreshPermission();
+          context.read<NotificationsProvider>().refreshPermission();
         },
       );
     }

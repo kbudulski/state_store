@@ -7,6 +7,7 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:location_service/location_service.dart';
 import 'package:notification_service/notification_service.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_app/features/settings/notifications/provider/notifications_provider.dart';
 import 'package:provider_app/features/settings/theme/provider/theme_provider.dart';
 import 'package:provider_app/features/settings/theme/provider/theme_state.dart';
 import 'package:provider_app/navigation/routes/app_routes.dart';
@@ -67,6 +68,11 @@ class MyApp extends StatelessWidget {
         StateNotifierProvider<AuthProvider, AuthState>(
           create: (_) => AuthProvider(authService: authService),
         ),
+        StateNotifierProvider<NotificationsProvider, NotificationsState>(
+          create: (_) => NotificationsProvider(
+            notificationService: notificationService,
+          )..init(),
+        ),
         StateNotifierProvider<ThemeProvider, ThemeState>(
           create: (_) => ThemeProvider(prefs)..initializeTheme(),
         ),
@@ -81,7 +87,6 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _showDialogOnDisconnectedNetwork(context);
     return StateNotifierBuilder<ThemeState>(
       stateNotifier: context.read<ThemeProvider>(),
       builder: (context, state, widget) {
@@ -94,20 +99,55 @@ class AppView extends StatelessWidget {
           navigatorKey: rootNavigatorKey,
           initialUrl: _getInitialUrl(context),
           routes: buildAppRoutes(context.read<AuthProvider>().isSignedIn),
+          builder: (context, child) {
+            return StateNotifierBuilder(
+              stateNotifier: context.read<NotificationsProvider>(),
+              builder: _reactToNotifications,
+              child: Consumer<ConnectivityResult?>(
+                builder: (context, result, child) {
+                  _showDialogOnDisconnectedNetwork(result);
+                  return child!;
+                },
+                child: child,
+              ),
+            );
+          },
         );
       },
     );
   }
 
-  void _showDialogOnDisconnectedNetwork(BuildContext context) {
-    final networkState = context.watch<ConnectivityResult?>();
-    if (!networkState.isConnected) {
+  void _showDialogOnDisconnectedNetwork(ConnectivityResult? result) {
+    if (!result.isConnected) {
       if (rootNavigatorKey.currentContext == null) return;
       showDialog<void>(
         context: rootNavigatorKey.currentContext!,
         builder: (_) => ConnectivityDialog(rootNavigatorKey.currentContext!),
       );
     }
+  }
+
+  Widget _reactToNotifications(
+    BuildContext context,
+    NotificationsState state,
+    Widget? child,
+  ) {
+    if (state.path != null) {
+      VRouter.of(rootNavigatorKey.currentContext!).to(
+        state.path!,
+      );
+    }
+    if (state.dailyText != null) {
+      showDialog<void>(
+        context: rootNavigatorKey.currentContext!,
+        builder: (_) => AlertDialog(
+          title: const Text('Daily reminder'),
+          content: Text(state.dailyText!),
+        ),
+      );
+    }
+    context.read<NotificationsProvider>().cleanMessagePayloadFromState();
+    return child!;
   }
 
   String _getInitialUrl(BuildContext context) =>

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_dependencies/firebase_auth.dart';
 
 class AppUser extends Equatable {
   const AppUser({
@@ -25,4 +26,16 @@ class AppUser extends Equatable {
 
   @override
   List<Object?> get props => [id, name];
+}
+
+extension AppUserExt on User {
+  AppUser get toUser => AppUser(
+        id: uid,
+        email: email,
+        name: displayName,
+        photoURL: photoURL,
+        emailVerified: emailVerified,
+        lastSignInTime: metadata.lastSignInTime,
+        creationTime: metadata.creationTime,
+      );
 }

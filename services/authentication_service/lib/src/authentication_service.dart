@@ -21,15 +21,3 @@ class AuthenticationService {
     return _firebaseAuth.signOut();
   }
 }
-
-extension on User {
-  AppUser get toUser => AppUser(
-        id: uid,
-        email: email,
-        name: displayName,
-        photoURL: photoURL,
-        emailVerified: emailVerified,
-        lastSignInTime: metadata.lastSignInTime,
-        creationTime: metadata.creationTime,
-      );
-}
