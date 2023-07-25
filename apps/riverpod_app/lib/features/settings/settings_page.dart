@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_app/providers/auth_provider.dart';
+import 'package:riverpod_app/providers/auth/auth_provider.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/permission_handler.dart';
 import 'package:shared_dependencies/vrouter.dart';

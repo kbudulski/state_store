@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:riverpod_app/providers/shared_prefs_provider.dart';
+import 'package:riverpod_app/providers/shared_prefs/shared_prefs_provider.dart';
 import 'package:shared_dependencies/flex_color_scheme.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 
