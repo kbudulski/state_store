@@ -6,23 +6,15 @@ part 'network_provider.g.dart';
 @riverpod
 class Network extends _$Network {
   Network() {
-    _connectivity.onConnectivityChanged.listen(
-      (status) => state = NetworkState(status),
-    );
+    _connectivity.onConnectivityChanged.listen((status) => state = status);
   }
 
   final Connectivity _connectivity = Connectivity();
 
   @override
-  NetworkState build() => NetworkState(null);
+  ConnectivityResult? build() => null;
 
   Future<void> checkConnection() async {
-    state = NetworkState(await _connectivity.checkConnectivity());
+    state = await _connectivity.checkConnectivity();
   }
-}
-
-class NetworkState {
-  NetworkState(this.status);
-
-  final ConnectivityResult? status;
 }

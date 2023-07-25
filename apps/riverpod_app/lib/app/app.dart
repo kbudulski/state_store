@@ -5,6 +5,7 @@ import 'package:riverpod_app/features/settings/theme/provider/theme_provider.dar
 import 'package:riverpod_app/navigation/routes/app_routes.dart';
 import 'package:riverpod_app/providers/auth_provider.dart';
 import 'package:riverpod_app/providers/network_provider.dart';
+import 'package:shared_dependencies/connectivity_plus.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
@@ -34,8 +35,9 @@ class MyApp extends ConsumerWidget {
   }
 
   void _showDialogOnDisconnectedNetwork(WidgetRef ref, BuildContext context) {
-    ref.listen<NetworkState>(networkProvider, (_, NetworkState state) {
-      if (!state.status.isConnected) {
+    ref.listen<ConnectivityResult?>(networkProvider,
+        (_, ConnectivityResult? state) {
+      if (!state.isConnected) {
         if (rootNavigatorKey.currentContext == null) return;
         showDialog<void>(
           context: rootNavigatorKey.currentContext!,

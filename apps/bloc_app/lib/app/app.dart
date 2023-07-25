@@ -111,8 +111,9 @@ class AppView extends StatelessWidget {
           navigatorKey: rootNavigatorKey,
           initialUrl: _getInitialUrl(context),
           routes: buildAppRoutes(context.read<AuthCubit>().isSignedIn),
-          builder: (_, child) => BlocListener<NetworkCubit, NetworkState>(
-            listenWhen: (_, state) => !state.status.isConnected,
+          builder: (_, child) =>
+              BlocListener<NetworkCubit, ConnectivityResult?>(
+            listenWhen: (_, state) => !state.isConnected,
             listener: _showInfoDialog,
             child: child,
           ),
@@ -121,7 +122,7 @@ class AppView extends StatelessWidget {
     );
   }
 
-  void _showInfoDialog(BuildContext context, NetworkState state) {
+  void _showInfoDialog(BuildContext context, ConnectivityResult? state) {
     if (rootNavigatorKey.currentContext == null) return;
     showDialog<void>(
       context: rootNavigatorKey.currentContext!,

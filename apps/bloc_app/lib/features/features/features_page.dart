@@ -18,8 +18,7 @@ class FeaturesPage extends StatelessWidget {
     final user = context.watch<AuthCubit>().state.user.name ?? 'Unknown';
     final theme =
         context.watch<ThemeCubit>().state.colorScheme?.name ?? 'Unknown';
-    final network =
-        context.watch<NetworkCubit>().state.status?.name ?? 'Unknown';
+    final network = context.watch<NetworkCubit>().state?.name ?? 'Unknown';
     final location =
         context.watch<MapsCubit>().state.cachedLocation ?? 'Unknown';
     return Scaffold(
