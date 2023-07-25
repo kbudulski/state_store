@@ -72,6 +72,7 @@ class MyApp extends StatelessWidget {
           create: (_) => NotificationsProvider(
             notificationService: notificationService,
           )..init(),
+          lazy: false,
         ),
         StateNotifierProvider<ThemeProvider, ThemeState>(
           create: (_) => ThemeProvider(prefs)..initializeTheme(),
@@ -87,6 +88,7 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _reactToNotifications(context, context.watch<NotificationsState>());
     return StateNotifierBuilder<ThemeState>(
       stateNotifier: context.read<ThemeProvider>(),
       builder: (context, state, widget) {
@@ -100,16 +102,12 @@ class AppView extends StatelessWidget {
           initialUrl: _getInitialUrl(context),
           routes: buildAppRoutes(context.read<AuthProvider>().isSignedIn),
           builder: (context, child) {
-            return StateNotifierBuilder(
-              stateNotifier: context.read<NotificationsProvider>(),
-              builder: _reactToNotifications,
-              child: Consumer<ConnectivityResult?>(
-                builder: (context, result, child) {
-                  _showDialogOnDisconnectedNetwork(result);
-                  return child!;
-                },
-                child: child,
-              ),
+            return Consumer<ConnectivityResult?>(
+              builder: (context, result, child) {
+                _showDialogOnDisconnectedNetwork(result);
+                return child!;
+              },
+              child: child,
             );
           },
         );
@@ -127,15 +125,10 @@ class AppView extends StatelessWidget {
     }
   }
 
-  Widget _reactToNotifications(
-    BuildContext context,
-    NotificationsState state,
-    Widget? child,
-  ) {
+  void _reactToNotifications(BuildContext context, NotificationsState state) {
+    if (state.path == null && state.dailyText == null) return;
     if (state.path != null) {
-      VRouter.of(rootNavigatorKey.currentContext!).to(
-        state.path!,
-      );
+      VRouter.of(rootNavigatorKey.currentContext!).to(state.path!);
     }
     if (state.dailyText != null) {
       showDialog<void>(
@@ -146,8 +139,9 @@ class AppView extends StatelessWidget {
         ),
       );
     }
-    context.read<NotificationsProvider>().cleanMessagePayloadFromState();
-    return child!;
+    Future.delayed(const Duration(seconds: 1), () {
+      context.read<NotificationsProvider>().cleanMessagePayloadFromState();
+    });
   }
 
   String _getInitialUrl(BuildContext context) =>
