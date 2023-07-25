@@ -195,7 +195,7 @@ class __$$_ApiStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ApiState implements _ApiState {
+class _$_ApiState extends _ApiState {
   const _$_ApiState(
       {this.status = ApiStatus.initial,
       final List<Plant> plants = const [],
@@ -206,7 +206,8 @@ class _$_ApiState implements _ApiState {
       this.wateringFilter,
       this.error,
       this.nextPageError})
-      : _plants = plants;
+      : _plants = plants,
+        super._();
 
   @override
   @JsonKey()
@@ -236,11 +237,6 @@ class _$_ApiState implements _ApiState {
   final Exception? error;
   @override
   final Exception? nextPageError;
-
-  @override
-  String toString() {
-    return 'ApiState(status: $status, plants: $plants, isLoadingNextPage: $isLoadingNextPage, page: $page, query: $query, sunlightFilter: $sunlightFilter, wateringFilter: $wateringFilter, error: $error, nextPageError: $nextPageError)';
-  }
 
   @override
   bool operator ==(dynamic other) {
@@ -282,7 +278,7 @@ class _$_ApiState implements _ApiState {
       __$$_ApiStateCopyWithImpl<_$_ApiState>(this, _$identity);
 }
 
-abstract class _ApiState implements ApiState {
+abstract class _ApiState extends ApiState {
   const factory _ApiState(
       {final ApiStatus status,
       final List<Plant> plants,
@@ -293,6 +289,7 @@ abstract class _ApiState implements ApiState {
       final WateringFilter? wateringFilter,
       final Exception? error,
       final Exception? nextPageError}) = _$_ApiState;
+  const _ApiState._() : super._();
 
   @override
   ApiStatus get status;

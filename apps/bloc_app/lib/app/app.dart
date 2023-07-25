@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
     required this.firestoreImageRepository,
     required this.realtimeChatRepository,
     required this.apiRepository,
-    required this.connectivity,
     required this.locationService,
     super.key,
   });
@@ -45,7 +44,6 @@ class MyApp extends StatelessWidget {
   final FirestoreImageRepository firestoreImageRepository;
   final RealtimeChatRepository realtimeChatRepository;
   final ApiRepository apiRepository;
-  final Connectivity connectivity;
   final LocationService locationService;
 
   @override
@@ -83,7 +81,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           BlocProvider(
-            create: (_) => NetworkCubit(connectivity)..checkConnection(),
+            create: (_) => NetworkCubit(Connectivity())..checkConnection(),
           ),
           BlocProvider(
             create: (_) => MapsCubit(locationService),

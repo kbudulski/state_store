@@ -1,6 +1,7 @@
 import 'package:api_repository/api_repository.dart';
 import 'package:authentication_service/authentication_service.dart';
 import 'package:bloc_app/app/app.dart';
+import 'package:bloc_app/global_bloc_observer.dart';
 import 'package:firebase_service/firebase_service.dart';
 import 'package:firestore_image_repository/firestore_image_repository.dart';
 import 'package:firestore_user_repository/firestore_user_repository.dart';
@@ -9,12 +10,12 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:location_service/location_service.dart';
 import 'package:notification_service/notification_service.dart';
 import 'package:realtime_chat_repository/realtime_chat_repository.dart';
-import 'package:shared_dependencies/connectivity_plus.dart';
 import 'package:shared_dependencies/dio.dart';
 import 'package:shared_dependencies/path_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = GlobalBlocObserver();
   await initializeFirebase();
 
   final authService = AuthenticationService();
@@ -23,6 +24,8 @@ Future<void> main() async {
   final notificationService = NotificationService();
   await notificationService.requestPermission();
   await notificationService.setupLocalNotifications();
+
+  final locationService = LocationService();
 
   final firestoreUserRepository = FirestoreUserRepository();
   final firestoreImageRepository = FirestoreImageRepository();
@@ -42,9 +45,6 @@ Future<void> main() async {
     storageDirectory: await getTemporaryDirectory(),
   );
 
-  final connectivity = Connectivity();
-  final locationService = LocationService();
-
   runApp(
     MyApp(
       authService: authService,
@@ -53,7 +53,6 @@ Future<void> main() async {
       firestoreImageRepository: firestoreImageRepository,
       realtimeChatRepository: realtimeChatRepository,
       apiRepository: apiRepository,
-      connectivity: connectivity,
       locationService: locationService,
     ),
   );

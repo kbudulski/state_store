@@ -15,4 +15,18 @@ class ApiState with _$ApiState {
     Exception? error,
     Exception? nextPageError,
   }) = _ApiState;
+
+  const ApiState._();
+
+  @override
+  String toString() => 'ApiState('
+      'status: $status, '
+      'plants: ${plants.length}, '
+      'isLoadingNextPage: $isLoadingNextPage, '
+      'page: $page, '
+      'query: $query, '
+      'sunlightFilter: $sunlightFilter, '
+      'wateringFilter: $wateringFilter, '
+      'error: $error, '
+      'nextPageError: $nextPageError)';
 }

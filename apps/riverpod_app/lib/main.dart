@@ -8,6 +8,7 @@ import 'package:notification_service/notification_service.dart';
 import 'package:riverpod_app/app/app.dart';
 import 'package:riverpod_app/features/settings/notifications/provider/notifications_provider.dart';
 import 'package:riverpod_app/features/settings/theme/provider/theme_provider.dart';
+import 'package:riverpod_app/global_provider_observer.dart';
 import 'package:riverpod_app/providers/service_providers.dart';
 import 'package:riverpod_app/providers/shared_prefs/shared_prefs_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,6 +32,7 @@ Future<void> main() async {
       notificationServiceProvider.overrideWith((_) => notificationService),
       sharedPrefsProvider.overrideWith((_) => prefs),
     ],
+    observers: [GlobalProviderObserver()],
   );
   await container.read(themesProvider.notifier).initializeTheme();
   unawaited(container.read(notificationsProvider.notifier).init());

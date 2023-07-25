@@ -55,6 +55,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         ),
       );
     } on Exception catch (error) {
+      addError(error, StackTrace.current);
       _emitError(emit, error);
     }
   }

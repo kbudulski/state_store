@@ -14,6 +14,9 @@ final class PlantsSearched extends ApiEvent {
 
   @override
   List<Object> get props => [query];
+
+  @override
+  String toString() => 'PlantsSearched { query: $query }';
 }
 
 final class PlantsFiltered extends ApiEvent {
@@ -24,4 +27,8 @@ final class PlantsFiltered extends ApiEvent {
 
   final SunlightFilter? sunFilter;
   final WateringFilter? waterFilter;
+
+  @override
+  String toString() =>
+      'PlantsFiltered { sunFilter: $sunFilter, waterFilter: $waterFilter }';
 }
