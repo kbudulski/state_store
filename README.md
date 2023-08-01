@@ -14,7 +14,7 @@ Due to having many apps in one repository, dependencies were extracted to be sha
     </tr>
   </thead>
   <tbody>
-  <tr width="600px">
+  <tr>
       <td>
         <h3>Features</h3>
         <br>
@@ -22,6 +22,56 @@ Due to having many apps in one repository, dependencies were extracted to be sha
       </td>
       <td>
         <image src="https://github.com/kbudulski/state_store/assets/33528651/0506f1dd-3918-40f1-bc9a-3f7bb5b501c6">
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <h3>API</h3>
+        <br>
+        Using <a href="https://perenual.com/docs/api">Perenual API</a> to create a popular master-detail scheme. List is paginated, results can be filtered as well as searched with delay and other mechanisms to save on requests.
+      </td>
+      <td>
+        <image src="https://github.com/kbudulski/state_store/assets/33528651/5cc402e2-b558-4faa-b744-a388313def54">
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <h3>Chat</h3>
+        <br>
+        Simple chat using Firestore Realtime Database. Synchronizes and refreshes across multiple devices.
+      </td>
+      <td>
+        <image src="https://github.com/kbudulski/state_store/assets/33528651/98e5f267-72e8-436f-836f-6cbee5815d95">
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <h3>Gallery</h3>
+        <br>
+        Gallery view with upload details, showing CRUD. Metadata is saved to Firebase Firestore, files uploaded to Firebase Storage.
+      </td>
+      <td>
+        <image src="https://github.com/kbudulski/state_store/assets/33528651/c2f8b736-18ad-4f50-9918-25c3cf2fa320">
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <h3>Maps</h3>
+        <br>
+        Managing permissions, GPS, locating user, showing also location that is chosen by tap on map, which is cached and used in other places.
+      </td>
+      <td>
+        <image src="https://github.com/kbudulski/state_store/assets/33528651/ccb1343b-32a5-408f-b2cc-d49ed7016edf">
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <h3>Themes</h3>
+        <br>
+        Using <a href="https://docs.flexcolorscheme.com/">Flex</a> to showcase variety of schemes.
+      </td>
+      <td>
+        <image src="https://github.com/kbudulski/state_store/assets/33528651/9b021d16-8f60-4ff0-9d21-4b7ca32a963a">
       </td>
   </tr>
   </tbody>
