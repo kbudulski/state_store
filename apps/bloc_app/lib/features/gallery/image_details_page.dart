@@ -17,7 +17,7 @@ class ImageDetailsPage extends StatelessWidget {
     return BlocConsumer<GalleryCubit, GalleryState>(
       listenWhen: (_, state) => state.isFileDeleted,
       listener: (context, state) {
-        context.pop();
+        Navigator.of(context).pop();
         context.read<GalleryCubit>().resetState();
       },
       builder: (_, state) {

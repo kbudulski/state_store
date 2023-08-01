@@ -29,7 +29,10 @@ class DeleteIconButton extends StatelessWidget {
               child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
             ),
             TextButton(
-              onPressed: onDelete,
+              onPressed: () {
+                Navigator.of(context).pop();
+                onDelete();
+              },
               child: const Text('Delete', style: TextStyle(color: Colors.red)),
             ),
           ],
