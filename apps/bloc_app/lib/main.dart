@@ -1,3 +1,4 @@
+import 'package:analytics_service/analytics_service.dart';
 import 'package:api_repository/api_repository.dart';
 import 'package:authentication_service/authentication_service.dart';
 import 'package:bloc_app/app/app.dart';
@@ -10,6 +11,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:location_service/location_service.dart';
 import 'package:notification_service/notification_service.dart';
 import 'package:realtime_chat_repository/realtime_chat_repository.dart';
+import 'package:remote_config_service/remote_config_service.dart';
 import 'package:shared_dependencies/dio.dart';
 import 'package:shared_dependencies/path_provider.dart';
 
@@ -26,6 +28,11 @@ Future<void> main() async {
   await notificationService.setupLocalNotifications();
 
   final locationService = LocationService();
+
+  final remoteConfigService = RemoteConfigService();
+  await remoteConfigService.initialize();
+
+  final analyticsService = AnalyticsService();
 
   final firestoreUserRepository = FirestoreUserRepository();
   final firestoreImageRepository = FirestoreImageRepository();
@@ -49,11 +56,13 @@ Future<void> main() async {
     MyApp(
       authService: authService,
       notificationService: notificationService,
+      locationService: locationService,
+      remoteConfigService: remoteConfigService,
+      analyticsService: analyticsService,
       firestoreUserRepository: firestoreUserRepository,
       firestoreImageRepository: firestoreImageRepository,
       realtimeChatRepository: realtimeChatRepository,
       apiRepository: apiRepository,
-      locationService: locationService,
     ),
   );
 }

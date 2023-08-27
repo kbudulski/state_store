@@ -6,6 +6,7 @@ class AppListTile extends StatelessWidget {
   const AppListTile({
     required this.icon,
     required this.title,
+    this.tileColor,
     this.iconBackgroundColor = Colors.blueAccent,
     this.subtitle,
     this.trailing,
@@ -14,6 +15,7 @@ class AppListTile extends StatelessWidget {
   });
 
   final IconData icon;
+  final Color? tileColor;
   final Color? iconBackgroundColor;
   final String title;
   final String? subtitle;
@@ -25,7 +27,7 @@ class AppListTile extends StatelessWidget {
     return ClipRRect(
       borderRadius: radius(Dimens.size24),
       child: Material(
-        color: context.color.primary,
+        color: tileColor ?? context.color.primary,
         child: InkWell(
           onTap: onTap,
           child: ListTile(

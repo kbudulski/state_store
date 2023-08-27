@@ -18,6 +18,7 @@ export 'src/components/elements/app_chip.dart';
 export 'src/components/elements/app_image_card.dart';
 export 'src/components/elements/app_list_tile.dart';
 export 'src/components/elements/app_simple_info_row.dart';
+export 'src/components/elements/app_sized_image.dart';
 export 'src/components/elements/app_switch_card.dart';
 export 'src/components/elements/app_tile_group.dart';
 export 'src/components/elements/app_upload_button.dart';

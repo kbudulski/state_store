@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_dependencies/cached_network_image.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:styleguide/components.dart';
 import 'package:styleguide/style.dart';
@@ -30,7 +29,11 @@ class PlantTile extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          _buildImage(),
+          AppSizedImage(
+            photo: image ?? '',
+            width: Dimens.size80,
+            height: Dimens.size88,
+          ),
           AppSpaces.gap16,
           Expanded(
             child: Column(
@@ -84,36 +87,5 @@ class PlantTile extends StatelessWidget {
   Widget _buildWateringIcon() {
     if (watering == null) return const SizedBox.shrink();
     return MiniIconChip(icon: watering!, color: Colors.blueAccent);
-  }
-
-  Widget _buildImage() {
-    if (image != null) {
-      return CachedNetworkImage(
-        imageUrl: image!,
-        width: Dimens.size80,
-        height: Dimens.size88,
-        imageBuilder: (_, imageProvider) => Container(
-          decoration: BoxDecoration(
-            borderRadius: radius(Dimens.size16),
-            image: DecorationImage(
-              image: imageProvider,
-              fit: BoxFit.fitHeight,
-            ),
-          ),
-        ),
-        errorWidget: (_, __, ___) => const Icon(Icons.error),
-        placeholder: (_, __) => const AppSpinner(),
-      );
-    } else {
-      return Container(
-        width: Dimens.size80,
-        height: Dimens.size88,
-        decoration: BoxDecoration(
-          borderRadius: radius(Dimens.size16),
-          color: Colors.grey,
-        ),
-        child: const Icon(Icons.image_not_supported, color: Colors.white),
-      );
-    }
   }
 }

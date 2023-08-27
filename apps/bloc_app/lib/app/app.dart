@@ -1,3 +1,4 @@
+import 'package:analytics_service/analytics_service.dart';
 import 'package:api_repository/api_repository.dart';
 import 'package:authentication_service/authentication_service.dart';
 import 'package:bloc_app/features/gallery/cubit/gallery_cubit.dart';
@@ -16,6 +17,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location_service/location_service.dart';
 import 'package:notification_service/notification_service.dart';
 import 'package:realtime_chat_repository/realtime_chat_repository.dart';
+import 'package:remote_config_service/remote_config_service.dart';
 import 'package:shared_dependencies/connectivity_plus.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/vrouter.dart';
@@ -30,27 +32,33 @@ class MyApp extends StatelessWidget {
   const MyApp({
     required this.authService,
     required this.notificationService,
+    required this.locationService,
+    required this.remoteConfigService,
+    required this.analyticsService,
     required this.firestoreUserRepository,
     required this.firestoreImageRepository,
     required this.realtimeChatRepository,
     required this.apiRepository,
-    required this.locationService,
     super.key,
   });
 
   final AuthenticationService authService;
   final NotificationService notificationService;
+  final LocationService locationService;
+  final RemoteConfigService remoteConfigService;
+  final AnalyticsService analyticsService;
   final FirestoreUserRepository firestoreUserRepository;
   final FirestoreImageRepository firestoreImageRepository;
   final RealtimeChatRepository realtimeChatRepository;
   final ApiRepository apiRepository;
-  final LocationService locationService;
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (_) => authService),
+        RepositoryProvider(create: (_) => remoteConfigService),
+        RepositoryProvider(create: (_) => analyticsService),
         RepositoryProvider(create: (_) => firestoreImageRepository),
         RepositoryProvider(create: (_) => realtimeChatRepository),
         RepositoryProvider(create: (_) => apiRepository),
@@ -109,6 +117,7 @@ class AppView extends StatelessWidget {
           navigatorKey: rootNavigatorKey,
           initialUrl: _getInitialUrl(context),
           routes: buildAppRoutes(context.read<AuthCubit>().isSignedIn),
+          navigatorObservers: [AnalyticsService.observer],
           builder: (_, child) =>
               BlocListener<NetworkCubit, ConnectivityResult?>(
             listenWhen: (_, state) => !state.isConnected,

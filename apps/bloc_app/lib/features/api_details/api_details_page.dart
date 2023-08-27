@@ -1,7 +1,6 @@
 import 'package:bloc_app/features/api_details/cubit/api_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_dependencies/cached_network_image.dart';
 import 'package:shared_dependencies/nb_utils.dart';
 import 'package:shared_dependencies/vrouter.dart';
 import 'package:styleguide/components.dart';
@@ -48,7 +47,10 @@ class ApiDetailsView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildImage(details.defaultImage?.regularUrl),
+                    AppSizedImage(
+                      photo: details.defaultImage?.regularUrl ?? '',
+                      height: 300,
+                    ),
                     AppSpaces.gap16,
                     Text(
                       details.commonName ?? 'Unknown',
@@ -73,27 +75,6 @@ class ApiDetailsView extends StatelessWidget {
           }
         },
       ),
-    );
-  }
-
-  Widget _buildImage(String? image) {
-    if (image == null) return const SizedBox.shrink();
-
-    return CachedNetworkImage(
-      imageUrl: image,
-      width: double.maxFinite,
-      height: 300,
-      imageBuilder: (_, imageProvider) => Container(
-        decoration: BoxDecoration(
-          borderRadius: radius(Dimens.size16),
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.fitWidth,
-          ),
-        ),
-      ),
-      errorWidget: (_, __, ___) => const Icon(Icons.error),
-      placeholder: (_, __) => const AppSpinner(),
     );
   }
 }

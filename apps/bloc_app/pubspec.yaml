@@ -29,6 +29,10 @@ dependencies:
     path: ../../services/location_service
   notification_service:
     path: ../../services/notification_service
+  remote_config_service:
+    path: ../../services/remote_config_service
+  analytics_service:
+    path: ../../services/analytics_service
 
   # Repositories
   api_repository:
