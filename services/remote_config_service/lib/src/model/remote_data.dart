@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'remote_data.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class RemoteData {
   RemoteData({
     required this.premium,

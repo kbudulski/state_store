@@ -149,3 +149,6 @@ app.*.symbols
 
 # Local Mason Files
 .mason/
+
+# Secrets
+*.env

@@ -30,3 +30,4 @@ dependencies:
   rxdart: ^0.27.7
   url_launcher: ^6.1.11
   vrouter: ^1.2.1
+  welltested_annotation: ^1.0.1

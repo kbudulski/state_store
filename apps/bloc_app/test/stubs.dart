@@ -16,3 +16,9 @@ final sadPlant = Plant(
   sunlight: [Sunlight.fullShade],
   watering: Watering.none,
 );
+
+final plantDetailsStub = PlantDetails(
+  id: 1,
+  commonName: 'Happy stub name',
+  description: 'This is a happy stub description',
+);

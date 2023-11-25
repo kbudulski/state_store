@@ -2,7 +2,9 @@ import 'package:bloc_app/features/settings/theme/cubit/theme_state.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:shared_dependencies/flex_color_scheme.dart';
+import 'package:shared_dependencies/welltested.dart';
 
+@Welltested(excludedMethods: ['fromJson', 'toJson'])
 class ThemeCubit extends HydratedCubit<ThemeState> {
   ThemeCubit() : super(const ThemeState());
 
@@ -14,10 +16,6 @@ class ThemeCubit extends HydratedCubit<ThemeState> {
 
   void changeColorScheme(FlexScheme scheme) {
     emit(state.copyWith(colorScheme: scheme));
-  }
-
-  void changeThemeMode(ThemeMode mode) {
-    emit(state.copyWith(themeMode: mode));
   }
 
   void toggleDarkMode() {

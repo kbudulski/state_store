@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_dependencies/connectivity_plus.dart';
+import 'package:shared_dependencies/welltested.dart';
 
+@Welltested()
 class NetworkCubit extends Cubit<ConnectivityResult?> {
   NetworkCubit(this._connectivity) : super(null) {
     _connectivity.onConnectivityChanged.listen(emit);
