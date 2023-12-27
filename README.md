@@ -94,7 +94,6 @@ Due to having many apps in one repository, dependencies were extracted to be sha
         Awesome tool that allows to showcase all the design system widgets or even whole pages as well as develop them without the need to launch the main application.
       </td>
       <td>
-        <image src="https://github.com/kbudulski/state_store/assets/33528651/e0ad65db-23ec-459b-9d24-f3e31c457465">
         <image src="https://github.com/kbudulski/state_store/assets/33528651/1addc20b-1384-4847-b26b-26181cb96e37">
       </td>
   </tr>
