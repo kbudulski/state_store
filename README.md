@@ -89,15 +89,23 @@ Due to having many apps in one repository, dependencies were extracted to be sha
   <tbody>
   <tr>
       <td>
-        <h3>Widgetbook</h3>
+        <h3>Widgets catalogue</h3>
         <br>
-        Awesome tool that allows to showcase all the design system widgets or even whole pages as well as develop them without the need to launch the main application.
+        <a href="https://pub.dev/packages/widgetbook">Widgetbook</a> is an awesome tool that allows to showcase all the design system widgets or even whole pages as well as develop them without the need to launch the main application.
       </td>
       <td>
         <image src="https://github.com/kbudulski/state_store/assets/33528651/1addc20b-1384-4847-b26b-26181cb96e37">
       </td>
   </tr>
+  <tr>
+      <td>
+        <h3>Golden tests</h3>
+        <br>
+        Useful UI tests with pixel perfect precision. Basic sample implemented with <a href="https://pub.dev/packages/alchemist">Alchemist</a>.
+      </td>
+      <td>
+        <image src="https://github.com/kbudulski/state_store/assets/33528651/864cb575-04fa-475c-8243-ca12fc5947d9">
+      </td>
+  </tr>
   </tbody>
 </table>
-
-
