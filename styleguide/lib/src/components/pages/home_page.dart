@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () => VRouter.of(context).to(Paths.settings),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(

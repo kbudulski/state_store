@@ -24,6 +24,8 @@ call flutter pub get
 :: services
 cd ../../services/firebase_service
 call flutter pub get
+cd ../../services/notification_service
+call flutter pub get
 
 :: styleguide
 cd ../../styleguide

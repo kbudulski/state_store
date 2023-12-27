@@ -24,30 +24,32 @@ class AppCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: radius(Dimens.size32),
-      child: Card(
-        margin: EdgeInsets.zero,
-        child: InkWell(
-          onTap: onTap,
-          splashColor: overlayColor.withOpacity(0.8),
-          child: Ink(
-            decoration: _buildBackgroundImage(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    _buildColoredLabel(context),
-                    _buildIcon(),
-                  ],
-                ),
-                AppSpaces.gap08,
-                _buildTitle(context),
-                _buildDescription(context),
-              ],
+    return IntrinsicHeight(
+      child: ClipRRect(
+        borderRadius: radius(Dimens.size32),
+        child: Card(
+          margin: EdgeInsets.zero,
+          child: InkWell(
+            onTap: onTap,
+            splashColor: overlayColor.withOpacity(0.8),
+            child: Ink(
+              decoration: _buildBackgroundImage(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      _buildColoredLabel(context),
+                      _buildIcon(),
+                    ],
+                  ),
+                  AppSpaces.gap08,
+                  _buildTitle(context),
+                  _buildDescription(context),
+                ],
+              ),
             ),
           ),
         ),

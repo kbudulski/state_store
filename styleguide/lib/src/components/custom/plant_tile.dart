@@ -63,7 +63,7 @@ class PlantTile extends StatelessWidget {
               ],
             ),
           ),
-          const Icon(Icons.chevron_right, color: Colors.grey)
+          const Icon(Icons.chevron_right, color: Colors.grey),
         ],
       ),
     );

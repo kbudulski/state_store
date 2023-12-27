@@ -13,7 +13,7 @@ class ApiDetailsCubit extends Cubit<ApiDetailsState> {
 
   @Testcases([
     'Should return details when fetch is successful',
-    'Should return error when fetch fails'
+    'Should return error when fetch fails',
   ])
   Future<void> fetchPlantDetails(String id) async {
     emit(const ApiDetailsLoading());

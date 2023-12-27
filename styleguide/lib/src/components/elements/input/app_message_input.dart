@@ -66,7 +66,7 @@ class _AppMessageInputState extends State<AppMessageInput> {
             IconButton(
               icon: Icon(Icons.send, color: context.color.primary),
               onPressed: _sendMessage,
-            )
+            ),
           ],
         ),
       ),

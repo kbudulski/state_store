@@ -52,7 +52,7 @@ class MapSampleState extends State<MapsPage> {
                 currentLocation: state.currentLocation,
                 onRefresh: context.read<MapsCubit>().getPermissions,
                 onClearCache: context.read<MapsCubit>().clearCache,
-              )
+              ),
             ],
           ),
         );

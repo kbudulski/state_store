@@ -8,14 +8,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gap: ^3.0.0
+  gap: ^3.0.1
   percent_indicator: ^4.0.1
+  firebase_ui_auth: ^1.11.0
 
   # Shared
   core_dependencies:
     path: ../dependencies/core_dependencies
-  firebase_dependencies:
-    path: ../dependencies/firebase_dependencies
   shared_dependencies:
     path: ../dependencies/shared_dependencies
   shared_assets:
