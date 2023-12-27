@@ -76,3 +76,28 @@ Due to having many apps in one repository, dependencies were extracted to be sha
   </tr>
   </tbody>
 </table>
+
+# Extras
+
+<table>
+  <thead>
+    <tr>
+      <th width="50%">Description</th>
+      <th width="50%">Presentation</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td>
+        <h3>Widgetbook</h3>
+        <br>
+        Awesome tool that allows to showcase all the design system widgets or even whole pages as well as develop them without the need to launch the main application.
+      </td>
+      <td>
+        <image src="https://github.com/kbudulski/state_store/assets/33528651/1addc20b-1384-4847-b26b-26181cb96e37">
+      </td>
+  </tr>
+  </tbody>
+</table>
+
+
